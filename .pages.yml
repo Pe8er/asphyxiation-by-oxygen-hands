@@ -5,7 +5,7 @@ content:
     type: collection
     path: '_posts'
     view:
-      fields: [ title, published, date, tags ]
+      fields: [ title, published, date, tags, categories ]
     fields:
       - name: published
         label: Published
@@ -17,13 +17,17 @@ content:
       - name: title
         label: Title
         type: string
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: categories
+        label: Categories
+        type: text
+        list: true
       - name: body
         label: Body
         type: rich-text
-      - name: tags
-        label: Tags
-        type: text
-        list: true
   - name: config
     label: Jekyll config
     path: _config.yml
