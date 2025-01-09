@@ -1,3 +1,3 @@
-[I write stuff!](https://blog.pgajos.com)
+I write stuff!
 
 # [blog.pgajos.com](https://blog.pgajos.com)
