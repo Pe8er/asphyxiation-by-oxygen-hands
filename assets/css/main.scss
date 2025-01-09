@@ -1,0 +1,42 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+search: false
+---
+
+@charset "utf-8";
+
+// $link-color: red;
+
+$serif      : "JetBrains Mono", Georgia, Times, serif;
+$sans-serif : "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$monospace  : "JetBrains Mono", Monaco, Consolas, "Lucida Console", monospace;
+
+$body-color: #181617;
+$background-color: #181617;
+$text-color: #E4E2E3;
+$primary-color: #D13F72;
+$link-color: #D13F72;
+
+body {
+  letter-spacing: -0.05em;
+  font-weight: 100;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+}
+
+p {
+  font-weight: 200;
+  font-size: 0.6em;
+  line-height: 2em;
+}
+
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials

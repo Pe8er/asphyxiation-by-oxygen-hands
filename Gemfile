@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem "minimal-mistakes-jekyll"
 gem "github-pages", group: :jekyll_plugins
 
 gem "tzinfo-data"
@@ -15,3 +16,6 @@ group :jekyll_plugins do
   gem "jekyll-include-cache"
   gem "jekyll-algolia"
 end
+
+gem "webrick", "~> 1.9"
+
