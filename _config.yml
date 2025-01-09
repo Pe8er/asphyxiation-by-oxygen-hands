@@ -27,7 +27,7 @@ search: true
 # logo: "/assets/images/bio-photo.jpg"
 
 # Build settings
-breadcrumbs: true
+breadcrumbs: false
 enable_copy_code_button: true
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
@@ -104,7 +104,7 @@ defaults:
       author_profile: false
       read_time: true
       comments: false
-      share: true
+      share: false
       related: true
   # _pages
   - scope:

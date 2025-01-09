@@ -11,15 +11,55 @@ $serif      : "JetBrains Mono", Georgia, Times, serif;
 $sans-serif : "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 $monospace  : "JetBrains Mono", Monaco, Consolas, "Lucida Console", monospace;
 
-$body-color: #181617;
-$background-color: #181617;
-$text-color: #E4E2E3;
-$primary-color: #D13F72;
-$link-color: #D13F72;
+// Light Theme
+// $background-light:#E4E2E3
+// $foreground-light:#181617
+// $url-light:#181617
+// $accent-light:#B12A59
+// $lines-light:#92878B
+
+// // Dark Theme
+// $background-dark: #181617
+// $foreground-dark: #E4E2E3
+// $url-dark: #E4E2E3
+// $accent-dark: #D13F72
+// $lines-dark: #756A6E
+
+$dark-theme: false;
+$background: #E4E2E3;
+$foreground: #181617;
+$url: #181617;
+$accent:#B12A59;
+$lines:#92878B;
+
+@if $dark-theme {
+  $background: #181617;
+  $foreground: #E4E2E3;
+  $url: #E4E2E3;
+  $accent: #D13F72;
+  $lines: #756A6E;
+}
+
+$body-color: $background;
+$footer-background-color: $background;
+$background-color: $background;
+$text-color: $foreground;
+$primary-color: $accent;
+$link-color: $accent;
+
+/* type scale */
+$type-size-1 : 1.953em;  // ~31.248px
+$type-size-2 : 1.563em;  // ~25.008px
+$type-size-3 : 1.25em;   // ~20px
+$type-size-4 : 1em;      // ~16px
+$type-size-5 : 0.75em;   // ~12px
+$type-size-6 : 0.6875em; // ~11px
+$type-size-7 : 0.625em;  // ~10px
+$type-size-8 : 0.5em;    // ~8px
 
 body {
   letter-spacing: -0.05em;
-  font-weight: 100;
+  font-weight: 200;
 }
 
 h1,
@@ -31,12 +71,19 @@ h6 {
   text-transform: uppercase;
 }
 
-p {
-  font-weight: 200;
-  font-size: 0.6em;
+.page_content p {
   line-height: 2em;
 }
 
+img,
+iframe,
+.fluid-width-video-wrapper {
+  margin-bottom: 1em;
+}
+
+.visible-links {
+  display: none !important;
+}
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
