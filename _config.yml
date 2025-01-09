@@ -66,11 +66,11 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Piotr Gajos"
+  name   : "Asphyxiation by Oxygen&nbsp;Hands"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "I like dogs."
+  bio    : "Piotr Gajos"
   links:
-    - label: "Website"
+    - label: "Portfolio"
       icon: "fas fa-fw fa-link"
       url: "https://pgajos.com"
     - label: "GitHub"
@@ -83,18 +83,6 @@ author:
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/pe8er/"
 
-# footer:
-#   links:
-#     - label: "Twitter"
-#       icon: "fab fa-fw fa-twitter-square"
-#       url: "https://twitter.com/"
-#     - label: "GitHub"
-#       icon: "fab fa-fw fa-github"
-#       url: "https://github.com/"
-#     - label: "Instagram"
-#       icon: "fab fa-fw fa-instagram"
-#       url: "https://instagram.com/"
-
 defaults:
   # _posts
   - scope:
@@ -102,18 +90,18 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: false
+      author_profile: true
       read_time: true
       comments: false
       share: false
-      related: true
+      related: false
   # _pages
   - scope:
       path: "_pages"
       type: pages
     values:
       layout: single
-      author_profile: false
+      author_profile: true
 
 category_archive:
   type: liquid

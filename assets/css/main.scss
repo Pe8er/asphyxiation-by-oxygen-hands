@@ -60,14 +60,14 @@ $link-color: $accent;
 }
 
 html {
-  font-size: 10px; // change to whatever
+  font-size: 14px; // change to whatever
 
   @include breakpoint($medium) {
-    font-size: 12px; // change to whatever
+    font-size: 14px; // change to whatever
   }
 
   @include breakpoint($large) {
-    font-size: 14px; // change to whatever
+    font-size: 16px; // change to whatever
   }
 
   @include breakpoint($x-large) {
@@ -98,7 +98,7 @@ h1, h2, h3 {
   letter-spacing: -0.08em !important;
 }
 
-.page__content h2 {
+.page__content h2, .list__item {
   border-bottom: 1px solid $lines !important;
 }
 
@@ -112,17 +112,76 @@ iframe,
   margin-bottom: 2em !important;
 }
 
-.visible-links, .archive__subtitle, .archive h1#page-title {
+.archive__subtitle, .archive h1#page-title, .skip-links, .page__meta i, .masthead {
   display: none !important;
 }
 
-// .archive {
-//   margin-top: 0 !important;
-// }
+.archive__item-excerpt {
+  font-size: $type-size-5 !important;
+}
+
+.archive__item > h2 > a {
+  color: $text-color !important;
+}
+
+.page__meta, #footer {
+  color: $lines !important;
+}
+
+.pagination--pager {
+  border: 1px solid $lines !important;
+}
+
+.page__taxonomy-item, .page__taxonomy strong {
+  margin: 0 !important;
+  padding: 0 !important;
+  }
+
+.page__meta p {
+   border-bottom: 1px solid $lines !important;
+   padding: 0.5em 0 !important;
+  }
+
+  .page__meta p:last-of-type {
+    border-bottom: none !important;
+  }
+
+.masthead {
+  border-bottom: 1px solid $lines !important;
+  text-transform: uppercase !important;
+}
+
+.masthead a {
+  color: $text-color !important;
+  padding: 5px !important;
+}
+
+.masthead a:hover {
+  padding: 4px !important;
+  border: 1px solid $lines !important;
+}
+
+.greedy-nav {
+  justify-content: space-between !important;
+}
 
 li::marker {
   content: "+ ";
   // font-size: $type-size-6;
   font-weight: 100;
   color: $lines;
+}
+
+figcaption {
+  color: $lines !important;
+  display: block !important;
+  margin: -2em 0 1em 0 !important;
+}
+
+h3.author__name {
+  font-size: $type-size-3 !important;
+}
+
+.sticky {
+  top: 0 !important;
 }

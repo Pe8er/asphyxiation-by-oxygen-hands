@@ -21,14 +21,12 @@ But I digress again…this book's cover became the foundation of my concept. *Un
 Here's what it looked like originally:
 
 ![ur-old](/assets/images/unguibus-et-rostro/ur-old.jpg)
-
-<small>Made in Poland, 2005</small>
+<figcaption>Made in Poland, 2005</figcaption>
 
 Can you see that sexy iDisk icon?? A train of nostalgia hit me recently, and so I decided to recreate the concept in Sketch, with some visual refinements and according to the current OS X UI metrics. Here's the effect:
 
 ![ur-new](/assets/images/unguibus-et-rostro/ur-new.jpg)
-
-<small>Made in California, 2016</small>
+<figcaption>Made in California, 2016</figcaption>
 
 I think it came out pretty well: it looks sort of contemporary, albeit with an ever so delicate aftertaste of gaudiness. Regardless of whether you agree or disagree, you can grab the source file for *Unguibus et Rostro*. It's gluten free!
 
