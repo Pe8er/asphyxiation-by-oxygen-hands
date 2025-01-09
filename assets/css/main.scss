@@ -5,61 +5,74 @@ search: false
 
 @charset "utf-8";
 
-// $link-color: red;
+$serif: "JetBrains Mono", Georgia, Times, serif;
+$sans-serif: "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Roboto",
+  "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+$monospace: "JetBrains Mono", Monaco, Consolas, "Lucida Console", monospace;
 
-$serif      : "JetBrains Mono", Georgia, Times, serif;
-$sans-serif : "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
-$monospace  : "JetBrains Mono", Monaco, Consolas, "Lucida Console", monospace;
+/* type scale */
+$type-size-1: 2.441em !default;
+$type-size-2: 1.953em !default;
+$type-size-3: 1.2em !default;
+$type-size-4: 1em !default;
+$type-size-5: 0.9em !default;
+$type-size-6: 0.8em !default;
+$type-size-7: 0.6em !default;
+$type-size-8: 0.5em !default;
 
-// Light Theme
-// $background-light:#E4E2E3
-// $foreground-light:#181617
-// $url-light:#181617
-// $accent-light:#B12A59
-// $lines-light:#92878B
-
-// // Dark Theme
-// $background-dark: #181617
-// $foreground-dark: #E4E2E3
-// $url-dark: #E4E2E3
-// $accent-dark: #D13F72
-// $lines-dark: #756A6E
+/* headline scale */
+$h-size-1: 3em !default;
+$h-size-2: 2em !default;
+$h-size-3: 1.5em !default;
+$h-size-4: 1.0625em !default;
+$h-size-5: 1.03125em !default;
+$h-size-6: 1em !default;
 
 $dark-theme: false;
-$background: #E4E2E3;
-$foreground: #181617;
-$url: #181617;
-$accent:#B12A59;
-$lines:#92878B;
+$background: #e4e2e3 !default;
+$foreground: #181617 !default;
+$url: #181617 !default;
+$accent: #b12a59 !default;
+$lines: #92878b !default;
 
 @if $dark-theme {
-  $background: #181617;
-  $foreground: #E4E2E3;
-  $url: #E4E2E3;
-  $accent: #D13F72;
-  $lines: #756A6E;
+  $background: #181617 !default;
+  $foreground: #e4e2e3 !default;
+  $url: #e4e2e3 !default;
+  $accent: #d13f72 !default;
+  $lines: #756a6e !default;
 }
 
-$body-color: $background;
-$footer-background-color: $background;
 $background-color: $background;
 $text-color: $foreground;
 $primary-color: $accent;
+$body-color: $background;
+$footer-background-color: $background;
 $link-color: $accent;
 
-/* type scale */
-$type-size-1 : 1.953em;  // ~31.248px
-$type-size-2 : 1.563em;  // ~25.008px
-$type-size-3 : 1.25em;   // ~20px
-$type-size-4 : 1em;      // ~16px
-$type-size-5 : 0.75em;   // ~12px
-$type-size-6 : 0.6875em; // ~11px
-$type-size-7 : 0.625em;  // ~10px
-$type-size-8 : 0.5em;    // ~8px
+@import "minimal-mistakes";
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 
-body {
-  letter-spacing: -0.05em;
-  font-weight: 200;
+* {
+  border: none !important;
+  border-radius: 0 !important;
+  letter-spacing: -0.07em !important;
+}
+
+html {
+  font-size: 10px; // change to whatever
+
+  @include breakpoint($medium) {
+    font-size: 12px; // change to whatever
+  }
+
+  @include breakpoint($large) {
+    font-size: 14px; // change to whatever
+  }
+
+  @include breakpoint($x-large) {
+    font-size: 16px; // change to whatever
+  }
 }
 
 h1,
@@ -69,21 +82,47 @@ h4,
 h5,
 h6 {
   text-transform: uppercase;
+  font-weight: 500 !important;
+  line-height: 1em;
 }
 
-.page_content p {
-  line-height: 2em;
+h2.archive__item-title:first-of-type {
+  margin-top: 0 !important;
+}
+
+.entries-list > .list__item {
+  margin-bottom: 4em !important;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.08em !important;
+}
+
+.page__content h2 {
+  border-bottom: 1px solid $lines !important;
+}
+
+a {
+  text-decoration: none;
 }
 
 img,
 iframe,
 .fluid-width-video-wrapper {
-  margin-bottom: 1em;
+  margin-bottom: 2em !important;
 }
 
-.visible-links {
+.visible-links, .archive__subtitle, .archive h1#page-title {
   display: none !important;
 }
 
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
-@import "minimal-mistakes"; // main partials
+// .archive {
+//   margin-top: 0 !important;
+// }
+
+li::marker {
+  content: "+ ";
+  // font-size: $type-size-6;
+  font-weight: 100;
+  color: $lines;
+}

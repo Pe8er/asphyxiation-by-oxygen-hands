@@ -31,6 +31,7 @@ breadcrumbs: false
 enable_copy_code_button: true
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
+excerpt_separator: <!--more-->
 # Outputting
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show

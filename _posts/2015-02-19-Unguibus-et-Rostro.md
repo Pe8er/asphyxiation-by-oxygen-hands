@@ -9,7 +9,7 @@ tags:
   - Design
 ---
 
-A throwback to the ancient history of UI customization, part two: circa 2005, my so-called career as a designer received a huge boost when Phill Ryu asked me to participate in the Shapeshifter theme contest, organized to celebrate the re-opening of MacThemes forum. If you joined the party after 2008, most likely none of these things mean anything to you. A quick history lesson then:
+A throwback to the ancient history of UI customization, part two: circa 2005, my so-called career as a designer received a huge boost when Phill Ryu asked me to participate in the Shapeshifter theme contest, organized to celebrate the re-opening of MacThemes forum. If you joined the party after 2008, most likely none of these things mean anything to you. <!--more-->A quick history lesson then:
 - [Shapeshifter](https://en.wikipedia.org/wiki/Unsanity) was a badass OS X theming engine, developed by the even more badass [Jason Harris](https://github.com/smeger).
 - MacThemes was the mecca of Mac UI customization, a forum gathering the most exquisite UI design talent back then. Nothing like the fancy-pants-always-nice dribbble club, it was a place for *real men* with *real pixels*.
 - Phill Ryu was a wonderfully talented douche man. Everyone *kind of hated him* but nobody could deny his marketing and product intuition. Where are you now, Phill?
