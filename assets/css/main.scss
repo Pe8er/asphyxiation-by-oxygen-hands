@@ -5,12 +5,13 @@ search: false
 
 @charset "utf-8";
 
+// Typefaces
 $serif: "JetBrains Mono", Georgia, Times, serif;
 $sans-serif: "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Roboto",
   "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 $monospace: "JetBrains Mono", Monaco, Consolas, "Lucida Console", monospace;
 
-/* type scale */
+// Type Scale
 $type-size-1: 2.441em !default;
 $type-size-2: 1.953em !default;
 $type-size-3: 1.2em !default;
@@ -20,7 +21,7 @@ $type-size-6: 0.8em !default;
 $type-size-7: 0.6em !default;
 $type-size-8: 0.5em !default;
 
-/* headline scale */
+// Headline Scale
 $h-size-1: 3em !default;
 $h-size-2: 2em !default;
 $h-size-3: 1.5em !default;
@@ -28,50 +29,59 @@ $h-size-4: 1.0625em !default;
 $h-size-5: 1.03125em !default;
 $h-size-6: 1em !default;
 
+// Colors
 $dark-theme: false;
-$background: #e4e2e3 !default;
-$foreground: #181617 !default;
-$url: #181617 !default;
-$accent: #b12a59 !default;
-$lines: #92878b !default;
+$background: #e4e2e3;
+$foreground: #2D292B;
+$url: #2D292B;
+$accent: #b12a59;
+$lines: #92878b;
 
 @if $dark-theme {
-  $background: #181617 !default;
-  $foreground: #e4e2e3 !default;
-  $url: #e4e2e3 !default;
-  $accent: #d13f72 !default;
-  $lines: #756a6e !default;
+  $background: #2D292B;
+  $foreground: #e4e2e3;
+  $url: #e4e2e3;
+  $accent: #d13f72;
+  $lines: #756a6e;
 }
 
-$background-color: $background;
-$text-color: $foreground;
-$primary-color: $accent;
-$body-color: $background;
-$footer-background-color: $background;
-$link-color: $accent;
+$background-color: $background !default;
+$text-color: $foreground !default;
+$primary-color: $accent !default;
+$body-color: $background !default;
+$footer-background-color: $background !default;
+$link-color: $accent !default;
+$lines-color: $lines !default;
+$box-shadow: none !default;
 
 @import "minimal-mistakes";
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 
+// Misc Elements
 * {
   border: none !important;
   border-radius: 0 !important;
-  letter-spacing: -0.07em !important;
+  letter-spacing: -0.05em !important;
+}
+
+body {
+  line-height: 1.7;
+  margin-top: 4em;
 }
 
 html {
-  font-size: 14px; // change to whatever
+  font-size: 13px;
 
   @include breakpoint($medium) {
-    font-size: 14px; // change to whatever
+    font-size: 13px;
   }
 
   @include breakpoint($large) {
-    font-size: 16px; // change to whatever
+    font-size: 15px;
   }
 
   @include breakpoint($x-large) {
-    font-size: 16px; // change to whatever
+    font-size: 15px;
   }
 }
 
@@ -83,23 +93,19 @@ h5,
 h6 {
   text-transform: uppercase;
   font-weight: 500 !important;
-  line-height: 1em;
+  line-height: 1;
 }
 
-h2.archive__item-title:first-of-type {
-  margin-top: 0 !important;
+h1,
+h1 a,
+h2,
+h3 {
+  letter-spacing: -0.09em !important;
 }
 
-.entries-list > .list__item {
-  margin-bottom: 4em !important;
-}
-
-h1, h2, h3 {
-  letter-spacing: -0.08em !important;
-}
-
-.page__content h2, .list__item {
-  border-bottom: 1px solid $lines !important;
+.page__content h2,
+.list__item {
+  border-bottom: 1px solid $lines-color !important;
 }
 
 a {
@@ -112,72 +118,104 @@ iframe,
   margin-bottom: 2em !important;
 }
 
-.archive__subtitle, .archive h1#page-title, .skip-links, .page__meta i, .masthead {
-  display: none !important;
-}
-
-.archive__item-excerpt {
-  font-size: $type-size-5 !important;
-}
-
-.archive__item > h2 > a {
-  color: $text-color !important;
-}
-
-.page__meta, #footer {
-  color: $lines !important;
-}
-
-.pagination--pager {
-  border: 1px solid $lines !important;
-}
-
-.page__taxonomy-item, .page__taxonomy strong {
-  margin: 0 !important;
-  padding: 0 !important;
-  }
-
-.page__meta p {
-   border-bottom: 1px solid $lines !important;
-   padding: 0.5em 0 !important;
-  }
-
-  .page__meta p:last-of-type {
-    border-bottom: none !important;
-  }
-
-.masthead {
-  border-bottom: 1px solid $lines !important;
-  text-transform: uppercase !important;
-}
-
-.masthead a {
-  color: $text-color !important;
-  padding: 5px !important;
-}
-
-.masthead a:hover {
-  padding: 4px !important;
-  border: 1px solid $lines !important;
-}
-
-.greedy-nav {
-  justify-content: space-between !important;
+ol, ul {
+  padding-inline-start: initial;
 }
 
 li::marker {
-  content: "+ ";
-  // font-size: $type-size-6;
   font-weight: 100;
-  color: $lines;
+  color: $lines-color;
+}
+ul li::marker {
+  content: "+ ";
 }
 
 figcaption {
-  color: $lines !important;
+  color: $lines-color !important;
   display: block !important;
   margin: -2em 0 1em 0 !important;
 }
+// End Misc ----------------------------- //
 
+// Kill Elements
+.archive__subtitle,
+.archive h1#page-title,
+.skip-links,
+.page__meta i,
+.masthead {
+  display: none !important;
+}
+// End Kill ----------------------------- //
+
+// Archive Page
+h2.archive__item-title:first-of-type {
+  margin-top: 0 !important;
+}
+
+.entries-list > .list__item {
+  margin-bottom: 4em !important;
+}
+
+.archive__item-excerpt {
+  font-size: $type-size-4 !important;
+}
+
+.archive__item > h1 > a {
+  color: $text-color !important;
+}
+// End Archive ----------------------------- //
+
+// Post Page
+
+.page__meta-sep::before {
+  content: "\\";
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page__meta {
+  font-size: $type-size-6 !important;
+}
+
+.page__meta,
+#footer {
+  color: $lines-color !important;
+}
+
+.pagination--pager {
+  border: 1px solid $lines-color !important;
+}
+
+.page__taxonomy-item,
+.page__taxonomy strong {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.page__meta p {
+  border-bottom: 1px solid $lines-color !important;
+  padding: 0.5em 0 !important;
+}
+
+.page__meta p:last-of-type {
+  border-bottom: none !important;
+}
+
+.notice {
+  background-color: $background-color !important;
+  border: 1px solid $lines-color !important;
+  color: $lines-color !important;
+  font-size: inherit !important;
+}
+
+.notice a {
+  // color: $primary-color !important;
+  color: mix($text-color, $lines-color, 90%) !important;
+}
+
+// End Post ----------------------------- //
+
+// Sidebar
 h3.author__name {
   font-size: $type-size-3 !important;
 }
@@ -185,3 +223,49 @@ h3.author__name {
 .sticky {
   top: 0 !important;
 }
+
+.toc {
+  color: $gray;
+  border: none;
+  position: fixed;
+
+  .nav__title {
+    background-color: $background-color;
+    color: $lines-color;
+    i {
+      display: none;
+    }
+  }
+  // Scrollspy marks toc items as .active when they are in focus
+  .active a {
+    @include yiq-contrasted($primary-color);
+  }
+}
+
+.toc__menu {
+  font-weight: 100 !important;
+  font-size: $type-size-5;
+  li::marker {
+    content: none !important;
+  }
+}
+// End Sidebar ----------------------------- //
+
+// Syntax Highlighting
+
+div.highlighter-rouge,
+figure.highlight, code
+{
+  font-size: inherit !important;
+  font-weight: 200 !important;
+  line-height: inherit !important;
+  color: $background-color !important;
+  background-color: $text-color !important;
+}
+
+.highlight .c {
+    color: $lines-color;
+    font-style: italic;
+  }
+
+// End Syntax Highlighting ----------------------------- //

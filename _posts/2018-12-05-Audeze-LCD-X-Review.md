@@ -11,7 +11,8 @@ tags:
 
 ![Header](/assets/images/audeze-lcd-x-review/header.jpg)
 
-> Note: this review was originally written sometime in 2014. I’m posting it here to inspire myself to write more about audio gear and music.
+Note: this review was originally written sometime in 2014. I’m posting it here to inspire myself to write more about audio gear and music.
+{: .notice}
 
 I have had my pair of Audeze LCD-X for about a month now. Considering how few real world impressions of these seem to be available out there, I thought I’d scribble a few words about this rather interesting headphone. I have decided not to write a review immediately after purchase, hoping time would alleviate the _wallet-hole-induced-praise_ mechanism. Let’s see if it worked!
 

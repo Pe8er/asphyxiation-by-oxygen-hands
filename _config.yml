@@ -20,10 +20,11 @@ description: >- # this means to ignore newlines until "baseurl:"
   Personal ramblings.
 github_username: Pe8er
 minimal_mistakes_skin: dark
-search: true
-# url: "https://mmistakes.github.io"
+search: false
+url: "https://blog.pgajos.com"
+repository: "pe8er/asphyxiation-by-oxygen-hands"
+locale: "en-US"
 # baseurl: "/minimal-mistakes" https://mmistakes.github.io/minimal-mistakes/docs/configuration/#site-url
-# repository: "pe8er/asphyxiation-by-oxygen-hands"
 # logo: "/assets/images/bio-photo.jpg"
 
 # Build settings
@@ -32,14 +33,15 @@ enable_copy_code_button: true
 markdown: kramdown
 remote_theme: mmistakes/minimal-mistakes
 excerpt_separator: <!--more-->
+
 # Outputting
-permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
+permalink: /:title/
+paginate: 10
 paginate_path: /page:num/
 timezone: Europe/Warsaw
 
-lunr:
-  search_within_pages: true
+# lunr:
+#   search_within_pages: true
 
 include:
   - _pages
@@ -92,6 +94,7 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
+      show_date: true
       comments: false
       share: false
       related: false
@@ -103,9 +106,14 @@ defaults:
       layout: single
       author_profile: true
 
-category_archive:
-  type: liquid
-  path: /categories/
+# category_archive:
+#   type: liquid
+#   path: /categories/
 tag_archive:
   type: liquid
   path: /tags/
+
+compress_html:
+  clippings: all
+  ignore:
+    envs: development  # disable compression in dev environment
