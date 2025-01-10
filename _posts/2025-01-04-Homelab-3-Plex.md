@@ -22,7 +22,7 @@ This post is a part of my _Homelab Series_. [See the index here](/Homelab-0-Intr
 sudo apt-get install apt-transport-https
 ```
 
-Add PMS repositories to `apt` diredtory:
+Add PMS repositories to `apt` directory:
 
 ```bash
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | gpg --dearmor | sudo tee /usr/share/keyrings/plex-archive-keyring.gpg >/dev/null

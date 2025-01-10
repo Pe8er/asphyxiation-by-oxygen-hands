@@ -14,4 +14,4 @@ I'm using a somewhat ancient Raspberry Pi 3B+ as a home server and NAS. This ser
 2. [Installing apps via Docker (portainer, transmission-web, lidarr, prowlarr)](/Homelab-2-Installing-Apps)
 3. [Plex Media Server](/Homelab-3-Plex)
 4. [Calibre Web](/Homelab-4-Calibre)
-5. [Reducing External Hard Drive Noise](/Homelab-5-Hdd-Noise)
+5. [Reducing External Hard Drive Noise](/Homelab-5-HDD-Noise/)
