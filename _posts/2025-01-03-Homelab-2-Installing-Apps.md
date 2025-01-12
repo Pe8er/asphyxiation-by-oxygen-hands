@@ -9,14 +9,86 @@ tags:
 toc: true
 ---
 
-I run a bunch of apps on my amazing _Pi homelab_ via Docker.
+I run a bunch of apps on my amazing \_Pi. Most of them via Docker.
 
 <!--more-->
 
 This post is a part of my _Homelab Series_. [See the index here](/Homelab-0-Introduction).
 {: .notice}
 
+## Syncthing
+
+This is my preferred solution for private file syncing and backup.
+
+This package is allegedly needed for syncthing to work properly:
+
+```bash
+sudo apt install apt-transport-https
+```
+
+Download release keys:
+
+```bash
+curl -s https://syncthing.net/release-key.txt | gpg --dearmor | sudo tee /usr/share/keyrings/syncthing-archive-keyring.gpg >/dev/null
+```
+
+Add syncthing repository to local sources:
+
+```bash
+echo "deb [signed-by=/usr/share/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+```
+
+And update `apt` so that syncthing can be installed:
+
+```bash
+sudo apt update
+```
+
+Install syncthing:
+
+```bash
+sudo apt install syncthing
+```
+
+Next, modify the configuration so syncthing can be accessed by other devices. Run it so it generates config files:
+
+```bash
+syncthing
+```
+
+And then `CTRL` + `C` to kill it. Edit configuration file:
+
+```bash
+nano ~/.local/state/syncthing/config.xml
+```
+
+Look for the following line (`CTRL` + `W`) and replace with the (preferrably static) IP of your Pi:
+
+```xml
+<address>127.0.0.1:8384</address>
+```
+
+Set up a service so syncthing launches on reboot:
+
+```bash
+sudo systemctl enable syncthing@$USER
+```
+
+And start the service:
+
+```bash
+sudo systemctl start syncthing@$USER
+```
+
+Syncthing is available:
+
+```bash
+http://[PI IP]:8384
+```
+
 ## Docker
+
+Docker is a fantastic solution to easily run lots of software in a quick, safe and replicable way.
 
 Make sure Pi is up to date:
 
@@ -200,4 +272,99 @@ services:
     ports:
       - 8686:8686
     restart: unless-stopped
+```
+
+## Magic of Remote Access: Tailscale
+
+I could never figure out how VPNs work. I had a hazy idea that's what I needed to access all my apps from outside the house…but I would never attempt to set up a VPN server (??) manually. Thankfully a good friend is a seasoned devops admin and he proposed a solution appopriate for my highly incapable brain: [Tailscale](https://tailscale.com/). I found a tutorial, closed my eyes and proceeded copy-pasting stuff.
+
+First, make sure `apt` is up to date:
+
+```bash
+sudo apt update
+```
+
+```bash
+sudo apt upgrade
+```
+
+<small>Note: Tailscale needs two dependencies that I already had installed: `curl` and `apt-transport-https`.</small>
+
+Grab Tailscale repo keys:
+
+```bash
+curl -fsSL https://pkgs.tailscale.com/stable/raspbian/bullseye.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg > /dev/null
+```
+
+Add Tailscale repository to the system:
+
+```bash
+curl -fsSL https://pkgs.tailscale.com/stable/raspbian/bullseye.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+```
+
+Update apt:
+
+```bash
+sudo apt update
+```
+
+And install:
+
+```bash
+sudo apt install tailscale
+```
+
+Start Tailscale:
+
+```bash
+sudo tailscale up
+```
+
+In order for other Tailscale clients to be able to access my LAN, Pi needs to be set up as _subnet router_. The following is from [Tailscale documentation](https://tailscale.com/kb/1019/subnets). First, enable port forwarding:
+
+```bash
+echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+```
+
+```bash
+echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
+```
+
+```bash
+sudo sysctl -p /etc/sysctl.d/99-tailscale.conf
+```
+
+Start Tailscale with a flag that adds subnet routes:
+
+```bash
+sudo tailscale up --advertise-routes=192.168.1.0/24,198.51.100.0/24
+```
+
+<small>(I'm not entirely sure what `198.51…` is needed for but I'm too scared to change it now that it all works)</small>
+
+Next, go to Tailscale admin console to 1) approve routes and 2) add access rules:
+
+```json
+{
+  "groups": {
+    "group:admin": ["[TAILSCALE EMAIL]@privaterelay.appleid.com"]
+  },
+  "acls": [
+    {
+      "action": "accept",
+      "src": ["group:admin", "192.168.1.0/24", "198.51.100.0/24"],
+      "dst": ["192.168.1.0/24:*", "198.51.100.0/24:*"]
+    }
+  ],
+  "ssh": [
+    // The default SSH policy, which lets users SSH into devices they own.
+    // Learn more at https://tailscale.com/kb/1193/tailscale-ssh/
+    {
+      "action": "check",
+      "src": ["autogroup:member"],
+      "dst": ["autogroup:self"],
+      "users": ["autogroup:nonroot", "root"]
+    }
+  ]
+}
 ```

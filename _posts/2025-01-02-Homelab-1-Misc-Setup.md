@@ -9,7 +9,7 @@ tags:
 toc: true
 ---
 
-An assortments of commands and steps I went through when setting up my Pi *homelab*.
+An assortments of steps I went through when setting up my Pi.
 
 <!--more-->
 

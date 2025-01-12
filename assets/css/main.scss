@@ -29,20 +29,28 @@ $h-size-4: 1.0625em !default;
 $h-size-5: 1.03125em !default;
 $h-size-6: 1em !default;
 
-// Colors
-$dark-theme: false;
-$background: #e4e2e3;
-$foreground: #2D292B;
-$url: #2D292B;
-$accent: #b12a59;
-$lines: #92878b;
+// Color Primitives
+$black: #1e202b;
+$white: #e4e2e3;
+$red: #b12a59;
+
+$dark-theme: true;
+
+// Light Theme Tokens
+$background: $white;
+$foreground: $black;
+$url: $foreground;
+$accent: mix($red, $background, 90%);
+$link: $black;
+$lines: mix($background, $foreground, 50%);
 
 @if $dark-theme {
-  $background: #2D292B;
-  $foreground: #e4e2e3;
-  $url: #e4e2e3;
-  $accent: #d13f72;
-  $lines: #756a6e;
+  $background: $black;
+  $foreground: mix($background, $white, 25%);
+  $url: $foreground;
+  $accent: mix($red, $background, 90%);
+  $link: $white;
+  $lines: mix($background, $foreground, 60%);
 }
 
 $background-color: $background !default;
@@ -50,9 +58,8 @@ $text-color: $foreground !default;
 $primary-color: $accent !default;
 $body-color: $background !default;
 $footer-background-color: $background !default;
-$link-color: $accent !default;
+$link-color: $link !default;
 $lines-color: $lines !default;
-$box-shadow: none !default;
 
 @import "minimal-mistakes";
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
@@ -62,6 +69,7 @@ $box-shadow: none !default;
   border: none !important;
   border-radius: 0 !important;
   letter-spacing: -0.05em !important;
+  box-shadow: none !important;
 }
 
 body {
@@ -110,6 +118,20 @@ h3 {
 
 a {
   text-decoration: none;
+  color: $link-color !important;
+}
+
+a:hover {
+  text-decoration: underline $link-color 5% !important;
+}
+
+.pagination--pager:hover {
+  color: $background-color !important;
+  text-decoration: none !important;
+}
+
+.social-icons a {
+  text-decoration: none !important;
 }
 
 img,
@@ -120,6 +142,11 @@ iframe,
 
 ol, ul {
   padding-inline-start: initial;
+  list-style-position: inside;
+}
+
+li * {
+  display: inline-block !important;
 }
 
 li::marker {
@@ -163,6 +190,108 @@ h2.archive__item-title:first-of-type {
 .archive__item > h1 > a {
   color: $text-color !important;
 }
+
+.grid__item {
+  margin-bottom: 2em;
+
+  @include breakpoint($small) {
+    float: left;
+    width: span(5 of 10);
+
+    &:nth-child(2n + 1) {
+      clear: both;
+      margin-left: 0;
+    }
+
+    &:nth-child(2n + 2) {
+      clear: none;
+      margin-left: gutter(of 10);
+    }
+  }
+
+  // @include breakpoint($medium) {
+  //   margin-left: 0; /* override margin*/
+  //   margin-right: 0; /* override margin*/
+  //   width: span(3 of 12);
+
+  //   &:nth-child(2n + 1) {
+  //     clear: none;
+  //   }
+
+  //   &:nth-child(4n + 1) {
+  //     clear: both;
+  //   }
+
+  //   &:nth-child(4n + 2) {
+  //     clear: none;
+  //     margin-left: gutter(4 of 12);
+  //   }
+
+  //   &:nth-child(4n + 3) {
+  //     clear: none;
+  //     margin-left: gutter(4 of 12);
+  //   }
+
+  //   &:nth-child(4n + 4) {
+  //     clear: none;
+  //     margin-left: gutter(4 of 12);
+  //   }
+  // }
+
+  @include breakpoint($medium) {
+    margin-left: 0 !important; /* override margin */
+    margin-right: 0 !important; /* override margin */
+    width: span(4 of 12) !important; /* Adjust the column width for 3 columns */
+  
+    &:nth-child(3n + 1) {
+      clear: both !important; /* Clear at the start of each new row */
+    }
+  
+    &:nth-child(3n + 2), &:nth-child(3n + 3) {
+      clear: none !important;
+      margin-left: gutter(1 of 12) !important; /* Add gutter spacing between columns */
+    }
+  }  
+
+
+  .page__meta {
+    margin: 0 0 4px;
+    font-size: 0.6em;
+  }
+
+  .page__meta-sep {
+    display: block;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  .archive__item-title {
+    margin-top: 0.5em;
+    font-size: $type-size-3;
+  }
+
+  .archive__item-excerpt {
+    display: none;
+
+    // @include breakpoint($medium) {
+    //   display: block;
+    //   font-size: $type-size-6;
+    // }
+  }
+
+  .archive__item-teaser {
+    @include breakpoint($small) {
+      max-height: 200px;
+    }
+
+    @include breakpoint($medium) {
+      max-height: 120px;
+    }
+  }
+}
+
 // End Archive ----------------------------- //
 
 // Post Page
@@ -216,6 +345,18 @@ h2.archive__item-title:first-of-type {
 // End Post ----------------------------- //
 
 // Sidebar
+
+.author__avatar img {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+.author__avatar img:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
+
 h3.author__name {
   font-size: $type-size-3 !important;
 }
@@ -259,8 +400,8 @@ figure.highlight, code
   font-size: inherit !important;
   font-weight: 200 !important;
   line-height: inherit !important;
-  color: $background-color !important;
-  background-color: $text-color !important;
+  color: $text-color !important;
+  background-color: mix($background-color, #000, 75%) !important;
 }
 
 .highlight .c {
