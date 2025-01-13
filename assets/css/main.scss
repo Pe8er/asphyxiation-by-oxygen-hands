@@ -258,15 +258,6 @@ h2.archive__item-title:first-of-type {
     display: none;
   }
 
-  .archive__item-teaser {
-    @include breakpoint($small) {
-      max-height: 200px;
-    }
-
-    @include breakpoint($medium) {
-      max-height: 120px;
-    }
-  }
 }
 
 // End Archive ----------------------------- //
@@ -359,7 +350,13 @@ h3.author__name {
   color: $gray;
   border: none;
   position: fixed;
+  display: none !important;
 
+
+  @include breakpoint($large) {
+    display: block !important;
+  }
+  
   .nav__title {
     background-color: $background-color;
     color: $lines-color;
@@ -380,6 +377,7 @@ h3.author__name {
     content: none !important;
   }
 }
+
 // End Sidebar ----------------------------- //
 
 // Syntax Highlighting
