@@ -1,6 +1,8 @@
 ---
 title: "Homelab #2: Installing Apps"
 date: 2025-01-03
+header:
+  teaser: /assets/images/portainer.jpg
 # last_modified_at: 2025-01-09
 categories:
   - Blog
@@ -9,7 +11,10 @@ tags:
 toc: true
 ---
 
-I run a bunch of apps on my amazing \_Pi. Most of them via Docker.
+![Portainer screenshot](/assets/images/portainer.jpg)
+{: .screenshot}
+
+I run a bunch of apps on my Pi. Most of them via Docker.
 
 <!--more-->
 
@@ -159,7 +164,7 @@ http://[PI IP]:9000
 
 The one and only [haugene/docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn).
 
-```bash
+```yaml
 version: '3.3'
 services:
     transmission-openvpn:
@@ -175,7 +180,7 @@ services:
             - OPENVPN_PROVIDER=PIA
             - OPENVPN_CONFIG=poland,germany,france,sweden
             - OPENVPN_USERNAME=[USER]
-            - OPENVPN_PASSWORD=[PASS]
+            - OPENVPN_PASSWORD=[PASSWORD]
             - LOCAL_NETWORK=192.168.1.0/24
             - CREATE_TUN_DEVICE=true
             - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
@@ -233,7 +238,7 @@ curl -s --form-string "token=$TOKEN_APP" --form-string "user=$TOKEN_USER" --form
 
 Image is grabbed from [linuxserver/prowlarr](https://docs.linuxserver.io/images/docker-prowlarr/#docker-cli-click-here-for-more-info).
 
-```bash
+```yaml
 ---
 services:
   prowlarr:
@@ -254,7 +259,7 @@ services:
 
 Image is from [linuxserver/docker-lidarr](https://github.com/linuxserver/docker-lidarr).
 
-```bash
+```yaml
 ---
 services:
   lidarr:

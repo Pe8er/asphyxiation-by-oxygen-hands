@@ -1,13 +1,17 @@
 ---
 title: "Homelab #3: Plex Media Server"
 date: 2025-01-04
-# last_modified_at: 2025-01-09
+header:
+  teaser: /assets/images/plex.jpg
 categories:
   - Blog
 tags:
   - Homelab
 toc: true
 ---
+
+![Plex Screenshot](/assets/images/plex.jpg)
+{: .screenshot}
 
 Plex Media Server is my personal local/cloud music library.
 

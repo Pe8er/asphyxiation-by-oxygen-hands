@@ -1,15 +1,19 @@
 ---
 title: "Homelab #4: Calibre Web"
 date: 2025-01-05
-# last_modified_at: 2025-01-09
 categories:
   - Blog
 tags:
   - Homelab
 toc: true
+header:
+  teaser: /assets/images/calibre.jpg
 ---
 
-I'm syncing my Calibre library from my Mac to Pi using Syncthing. And then [Calibre-Web](https://github.com/janeczku/calibre-web) picks it up and makes it available on my local network. I'm planning to use it as a syncing mechanism for my Kobo e-reader.
+![Calibre Web Screenshot](/assets/images/calibre.jpg)
+{: .screenshot}
+
+I synchronize my Calibre library between my Mac and Pi using Syncthing. I add and manage books on Mac and do a one way sync to Pi to prevent database corruption. And then [Calibre-Web](https://github.com/janeczku/calibre-web) on Pi picks up the database and makes it available on my local network. I'm planning to use it as a syncing mechanism for my Kobo e-reader.
 
 <!--more-->
 
@@ -18,9 +22,9 @@ This post is a part of my _Homelab Series_. [See the index here](/Homelab-0-Intr
 
 ## Calibre Web
 
-Docker image is from [linuxserver/docker-calibre-web](https://github.com/linuxserver/docker-calibre-web).
+Docker image is from [linuxserver/docker-calibre-web](https://github.com/linuxserver/docker-calibre-web). To install, paste the following docker compose to portainer and customize as needed:
 
-```bash
+```yaml
 ---
 services:
   calibre-web:
@@ -39,7 +43,7 @@ services:
     restart: unless-stopped
 ```
 
-## Database Automatic Reload
+## Automatic Database Reload
 
 These steps make Calibre Web reload its database connection automatically, whenever any change to the database (incoming from my Mac) is detected.
 
@@ -56,7 +60,7 @@ sudo apt install inotify-tools
 Create monitoring script:
 
 ```bash
-nano /home/pe8er/docker/calibre-web/calibre-monitor.sh
+nano /home/$USER/docker/calibre-web/calibre-monitor.sh
 ```
 
 Paste the following:
@@ -64,7 +68,7 @@ Paste the following:
 ```bash
 #!/bin/bash
 
-inotifywait -m -e modify /mnt/media/Piotrek/CalibreLibrary |
+inotifywait -m -e modify /mnt/media/Piotrek/CalibreLibrary | # Replace path with folder where your metadata.db is located.
 while read -r events filepath; do
         echo "$events"
         echo "$filepath"
@@ -75,7 +79,7 @@ done
 Make the script executable:
 
 ```bash
-chmod a+x /home/pe8er/docker/calibre-web/calibre-monitor.sh
+chmod a+x /home/$USER/docker/calibre-web/calibre-monitor.sh
 ```
 
 Set up a service so it persists across reboots:
@@ -84,9 +88,9 @@ Set up a service so it persists across reboots:
 sudo nano /etc/systemd/system/calibre-monitor.service
 ```
 
-Paste the following:
+Paste the following and insert your username where indicated:
 
-```bash
+```yaml
 [Unit]
 Description=Calibre Database Monitor
 
@@ -94,12 +98,12 @@ Description=Calibre Database Monitor
 Type=simple
 Restart=always
 RestartSec=5
-ExecStart=/bin/bash /home/pe8er/docker/calibre-web/calibre-monitor.sh
-User=pe8er
-WorkingDirectory=/home/pe8er
+ExecStart=/bin/bash /home/[YOUR USERNAME]/docker/calibre-web/calibre-monitor.sh
+User=[YOUR USERNAME]
+WorkingDirectory=/home/[YOUR USERNAME]
 
 [Install]
-WantedBy=multi-user. target
+WantedBy=multi-user.target
 ```
 
 

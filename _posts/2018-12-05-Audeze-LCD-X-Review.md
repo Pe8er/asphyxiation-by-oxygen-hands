@@ -2,6 +2,8 @@
 title: "Audeze LCD-X: A Review"
 date: 2018-12-05
 last_modified_at: 2025-01-09
+header:
+  teaser: /assets/images/audeze-lcd-x-review/header.jpg
 categories:
   - Blog
 tags:

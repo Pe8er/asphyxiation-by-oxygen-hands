@@ -30,8 +30,8 @@ $h-size-5: 1.03125em !default;
 $h-size-6: 1em !default;
 
 // Color Primitives
-$black: #1e202b;
-$white: #e4e2e3;
+$black: #303436;
+$white: #E4E6E7;
 $red: #b12a59;
 
 $dark-theme: true;
@@ -49,10 +49,11 @@ $lines: mix($background, $foreground, 50%);
   $foreground: mix($background, $white, 25%);
   $url: $foreground;
   $accent: mix($red, $background, 90%);
-  $link: $white;
+  $link: #fff;
   $lines: mix($background, $foreground, 60%);
 }
 
+$base08: $accent;
 $background-color: $background !default;
 $text-color: $foreground !default;
 $primary-color: $accent !default;
@@ -60,6 +61,7 @@ $body-color: $background !default;
 $footer-background-color: $background !default;
 $link-color: $link !default;
 $lines-color: $lines !default;
+$box-shadow: 0 1em 2em 0 mix(#000, $black, 25%) !default;
 
 @import "minimal-mistakes";
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
@@ -134,10 +136,9 @@ a:hover {
   text-decoration: none !important;
 }
 
-img,
 iframe,
 .fluid-width-video-wrapper {
-  margin-bottom: 2em !important;
+  margin-bottom: 1em !important;
 }
 
 ol, ul {
@@ -160,7 +161,7 @@ ul li::marker {
 figcaption {
   color: $lines-color !important;
   display: block !important;
-  margin: -2em 0 1em 0 !important;
+  margin: -1em 0 1em 0 !important;
 }
 // End Misc ----------------------------- //
 
@@ -169,7 +170,8 @@ figcaption {
 .archive h1#page-title,
 .skip-links,
 .page__meta i,
-.masthead {
+.masthead,
+.archive__item-teaser {
   display: none !important;
 }
 // End Kill ----------------------------- //
@@ -181,14 +183,6 @@ h2.archive__item-title:first-of-type {
 
 .entries-list > .list__item {
   margin-bottom: 4em !important;
-}
-
-.archive__item-excerpt {
-  font-size: $type-size-4 !important;
-}
-
-.archive__item > h1 > a {
-  color: $text-color !important;
 }
 
 .grid__item {
@@ -238,47 +232,30 @@ h2.archive__item-title:first-of-type {
   //   }
   // }
 
-  @include breakpoint($medium) {
-    margin-left: 0 !important; /* override margin */
-    margin-right: 0 !important; /* override margin */
-    width: span(4 of 12) !important; /* Adjust the column width for 3 columns */
+  // @include breakpoint($medium) {
+  //   margin-left: 0 !important; /* override margin */
+  //   margin-right: 0 !important; /* override margin */
+  //   width: span(4 of 12) !important; /* Adjust the column width for 3 columns */
   
-    &:nth-child(3n + 1) {
-      clear: both !important; /* Clear at the start of each new row */
-    }
+  //   &:nth-child(3n + 1) {
+  //     clear: both !important; /* Clear at the start of each new row */
+  //   }
   
-    &:nth-child(3n + 2), &:nth-child(3n + 3) {
-      clear: none !important;
-      margin-left: gutter(1 of 12) !important; /* Add gutter spacing between columns */
-    }
-  }  
+  //   &:nth-child(3n + 2), &:nth-child(3n + 3) {
+  //     clear: none !important;
+  //     margin-left: gutter(1 of 12) !important; /* Add gutter spacing between columns */
+  //   }
+  // }  
 
 
-  .page__meta {
-    margin: 0 0 4px;
-    font-size: 0.6em;
-  }
-
-  .page__meta-sep {
-    display: block;
-
-    &::before {
-      display: none;
-    }
-  }
 
   .archive__item-title {
     margin-top: 0.5em;
-    font-size: $type-size-3;
+    font-size: $type-size-2;
   }
 
   .archive__item-excerpt {
     display: none;
-
-    // @include breakpoint($medium) {
-    //   display: block;
-    //   font-size: $type-size-6;
-    // }
   }
 
   .archive__item-teaser {
@@ -296,19 +273,40 @@ h2.archive__item-title:first-of-type {
 
 // Post Page
 
-.page__meta-sep::before {
-  content: "\\";
-  padding-left: 0;
-  padding-right: 0;
+.screenshot img {
+  border-radius: 0.75em !important;
+  box-shadow: $box-shadow !important;
 }
 
 .page__meta {
   font-size: $type-size-6 !important;
+  border-top: 1px solid $lines-color !important;
+  padding-top: 0.5em;
 }
 
 .page__meta,
 #footer {
   color: $lines-color !important;
+}
+
+.page__meta-sep {
+  display: inline !important;
+}
+
+.page__meta-sep::before {
+  display: inline !important;
+  content: "\\" !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.page__meta p {
+  border-bottom: 1px solid $lines-color !important;
+  padding: 0.5em 0 !important;
+}
+
+.page__meta p:last-of-type {
+  border-bottom: none !important;
 }
 
 .pagination--pager {
@@ -321,14 +319,6 @@ h2.archive__item-title:first-of-type {
   padding: 0 !important;
 }
 
-.page__meta p {
-  border-bottom: 1px solid $lines-color !important;
-  padding: 0.5em 0 !important;
-}
-
-.page__meta p:last-of-type {
-  border-bottom: none !important;
-}
 
 .notice {
   background-color: $background-color !important;
