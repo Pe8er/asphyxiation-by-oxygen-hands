@@ -34,7 +34,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Warsaw
-      - CALIBRE_RECONNECT=true
+      - CALIBRE_RECONNECT=true # This is required for the automatic database reload script to work.
     volumes:
       - /home/pe8er/docker/calibre-web:/config
       - /mnt/media/Piotrek/CalibreLibrary:/books
@@ -46,6 +46,12 @@ services:
 ## Automatic Database Reload
 
 These steps make Calibre Web reload its database connection automatically, whenever any change to the database (incoming from my Mac) is detected.
+
+Before you start, make sure you have this environment variable in your Calibre-Web container:
+
+```bash
+CALIBRE_RECONNECT=true
+```
 
 Install the notifications system:
 
