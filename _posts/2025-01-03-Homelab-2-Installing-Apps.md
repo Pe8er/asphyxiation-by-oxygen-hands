@@ -23,9 +23,7 @@ This post is a part of my _Homelab Series_. [See the index here](/Homelab-0-Intr
 
 ## Syncthing
 
-This is my preferred solution for private file syncing and backup.
-
-This package is allegedly needed for syncthing to work properly:
+This is my preferred solution for private file syncing and backup. This package is allegedly needed for syncthing to work properly:
 
 ```bash
 sudo apt install apt-transport-https
@@ -67,10 +65,10 @@ And then `CTRL` + `C` to kill it. Edit configuration file:
 nano ~/.local/state/syncthing/config.xml
 ```
 
-Look for the following line (`CTRL` + `W`) and replace with the (preferrably static) IP of your Pi:
+Look for the following line (`CTRL` + `W`) and replace with the ([preferrably static](http://localhost:4000/Homelab-1-Misc-Setup/#define-static-ip)) IP of your Pi:
 
 ```xml
-<address>127.0.0.1:8384</address>
+<address>192.168.1.132:8384</address>
 ```
 
 Set up a service so syncthing launches on reboot:
@@ -142,7 +140,7 @@ This message shows that your installation appears to be working correctly.
 
 ## Portainer
 
-I'm a sucker for GUI, so I needed this to get things going. First, pull the Portainer image:
+I'm a sucker for GUI, so I need Portainer to get things going. First, pull the Portainer image:
 
 ```bash
 sudo docker pull portainer/portainer-ce:latest
@@ -208,7 +206,6 @@ services:
 #!/bin/bash
 
 # Send push notification to pushover device when a torrent is complete.
-#
 # Available environment variables from Transmission (as of v2.83) are:
 #
 # TR_APP_VERSION
@@ -219,17 +216,13 @@ services:
 # TR_TORRENT_NAME
 
 # Pushover Token and User Key
-TOKEN_USER="[TOKEN_USER]";
 TOKEN_APP="[TOKEN_APP]";
-
-# Message for the notification.
-MESSAGE="$TR_TORRENT_NAME added to Transmission.";
-
+TOKEN_USER="[TOKEN_USER]";
+TIMESTAMP=$(date +%s);
 PRIORITY=0;
 SOUND="tugboat";
 TITLE="☠️ Torrent added";
-
-TIMESTAMP=$(date +%s);
+MESSAGE="$TR_TORRENT_NAME added to Transmission.";
 
 curl -s --form-string "token=$TOKEN_APP" --form-string "user=$TOKEN_USER" --form-string "timestamp=$TIMESTAMP" --form-string "priority=$PRIORITY" --form-string "sound=$SOUND" --form-string "title=$TITLE" --form-string "message=$MESSAGE" https://api.pushover.net/1/messages.json
 ```
@@ -281,7 +274,7 @@ services:
 
 ## Magic of Remote Access: Tailscale
 
-I could never figure out how VPNs work. I had a hazy idea that's what I needed to access all my apps from outside the house…but I would never attempt to set up a VPN server (??) manually. Thankfully a good friend is a seasoned devops admin and he proposed a solution appopriate for my highly incapable brain: [Tailscale](https://tailscale.com/). I found a tutorial, closed my eyes and proceeded copy-pasting stuff.
+I could never figure out how VPNs work. I've had a hazy idea that's what I need to access all my apps from outside the house…but I would never attempt to set up a VPN server (??) manually. Thankfully a good friend is a seasoned devops admin and he proposed a solution appopriate for my highly incapable brain: [Tailscale](https://tailscale.com/). I found a tutorial, closed my eyes and proceeded copy-pasting stuff.
 
 First, make sure `apt` is up to date:
 
@@ -345,7 +338,7 @@ Start Tailscale with a flag that adds subnet routes:
 sudo tailscale up --advertise-routes=192.168.1.0/24,198.51.100.0/24
 ```
 
-<small>(I'm not entirely sure what `198.51…` is needed for but I'm too scared to change it now that it all works)</small>
+<small>(I'm not entirely sure what `198.51…` is needed for but I'm too scared to change it now, since it seems to work well)</small>
 
 Next, go to Tailscale admin console to 1) approve routes and 2) add access rules:
 

@@ -13,7 +13,7 @@ toc: true
 ![Plex Screenshot](/assets/images/plex.jpg)
 {: .screenshot}
 
-Plex Media Server is my personal local/cloud music library.
+I use Plex Media Server as my personal, local/cloud music library. I have a lifetime Plex Pass, which gives me access to all [Plexamp](https://www.plex.tv/plexamp/) features, including setting it up as a headless player on my Pi.
 
 <!--more-->
 
@@ -21,6 +21,8 @@ This post is a part of my _Homelab Series_. [See the index here](/Homelab-0-Intr
 {: .notice}
 
 ## Plex Media Server
+
+First, install a dependency:
 
 ```bash
 sudo apt-get install apt-transport-https

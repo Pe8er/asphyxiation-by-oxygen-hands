@@ -24,6 +24,7 @@ search: false
 url: "https://blog.pgajos.com"
 repository: "pe8er/asphyxiation-by-oxygen-hands"
 locale: "en-US"
+header: /assets/images/bio-photo.jpg
 # baseurl: "/minimal-mistakes" https://mmistakes.github.io/minimal-mistakes/docs/configuration/#site-url
 # logo: "/assets/images/bio-photo.jpg"
 
@@ -69,8 +70,8 @@ plugins:
 
 author:
   name   : "Asphyxiation by<br />Oxygen Hands"
+  bio   : "Piotr Gajos"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Piotr Gajos"
   links:
     - label: "Portfolio"
       icon: "fas fa-fw fa-link"

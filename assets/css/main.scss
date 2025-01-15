@@ -50,7 +50,7 @@ $lines: mix($background, $foreground, 50%);
   $url: $foreground;
   $accent: mix($red, $background, 90%);
   $link: #fff;
-  $lines: mix($background, $foreground, 60%);
+  $lines: mix($background, $foreground, 40%);
 }
 
 $base08: $accent;
@@ -62,11 +62,13 @@ $footer-background-color: $background !default;
 $link-color: $link !default;
 $lines-color: $lines !default;
 $box-shadow: 0 1em 2em 0 mix(#000, $black, 25%) !default;
+$border: 1px solid $lines-color !default;
 
 @import "minimal-mistakes";
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 
-// Misc Elements
+// Misc Elements ----------------------------- //
+
 * {
   border: none !important;
   border-radius: 0 !important;
@@ -76,7 +78,6 @@ $box-shadow: 0 1em 2em 0 mix(#000, $black, 25%) !default;
 
 body {
   line-height: 1.7;
-  margin-top: 4em;
 }
 
 html {
@@ -115,7 +116,7 @@ h3 {
 
 .page__content h2,
 .list__item {
-  border-bottom: 1px solid $lines-color !important;
+  border-bottom: $border !important;
 }
 
 a {
@@ -163,22 +164,149 @@ figcaption {
   display: block !important;
   margin: -1em 0 1em 0 !important;
 }
+
 // End Misc ----------------------------- //
 
-// Kill Elements
+// Kill Elements ----------------------------- //
+
 .archive__subtitle,
 .archive h1#page-title,
 .skip-links,
 .page__meta i,
-.masthead,
-.archive__item-teaser {
+.masthead > * {
   display: none !important;
 }
+
 // End Kill ----------------------------- //
 
-// Archive Page
+// Header ----------------------------- //
+
+.site-title {
+  text-transform: uppercase;
+}
+
+.visible-links a:hover:before {
+  display: none;
+}
+
+// Sidebar ----------------------------- //
+
+.sidebar {
+  margin-top: 1em;
+  opacity: 1 !important;
+}
+
+.author__avatar img {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
+}
+
+.author__avatar img:hover {
+  -webkit-filter: none;
+  filter: none;
+}
+
+.sticky {
+  top: 0 !important;
+  li::marker {
+    content: none !important;
+  }
+}
+
+.toc {
+  color: $gray;
+  border: none;
+  position: fixed;
+  display: none !important;
+
+  @include breakpoint($large) {
+    display: block !important;
+  }
+  
+  .nav__title {
+    background-color: $background-color;
+    color: $lines-color;
+    i {
+      display: none;
+    }
+  }
+  // Scrollspy marks toc items as .active when they are in focus
+  .active a {
+    @include yiq-contrasted($primary-color);
+  }
+}
+
+.toc__menu {
+  font-weight: 100 !important;
+  font-size: $type-size-5;
+}
+
+.author__content {
+  vertical-align: middle;
+}
+
+.author__bio {
+  display: none !important;
+  @include breakpoint($large) {
+    display: block !important;
+  }
+}
+
+.author__urls-wrapper {
+  margin-top: 1em;
+}
+
+// End Sidebar ----------------------------- //
+
+// Footer ----------------------------- //
+
+.page__footer, #footer {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#footer {
+  border-top: $border !important;
+  padding: 0.5em !important;
+}
+
+#footer > footer > div > * {
+  display: inline !important;
+}
+// End Footer ----------------------------- //
+
+// Syntax Highlighting ----------------------------- //
+
+div.highlighter-rouge,
+figure.highlight, code
+{
+  font-size: inherit !important;
+  font-weight: 300 !important;
+  line-height: inherit !important;
+  color: $text-color !important;
+  background-color: mix($background-color, #000, 75%) !important;
+}
+
+.highlight .c {
+    color: $lines-color;
+    font-style: italic;
+  }
+
+// End Syntax Highlighting ----------------------------- //
+
+// Archive Page ----------------------------- //
+
 h2.archive__item-title:first-of-type {
   margin-top: 0 !important;
+}
+
+.page__inner-wrap {
+  margin-top: 0 !important;
+  padding-top: 2em !important;
+  padding-bottom: 2em !important;
+  @include breakpoint($large) {
+    border-left: $border !important; 
+    padding-left: 2em;
+  }
 }
 
 .entries-list > .list__item {
@@ -201,53 +329,16 @@ h2.archive__item-title:first-of-type {
       clear: none;
       margin-left: gutter(of 10);
     }
+    .archive__item-teaser {
+      @include breakpoint($small) {
+        max-height: 200px;
+      }
+  
+      @include breakpoint($medium) {
+        max-height: 400px;
+      }
+    }
   }
-
-  // @include breakpoint($medium) {
-  //   margin-left: 0; /* override margin*/
-  //   margin-right: 0; /* override margin*/
-  //   width: span(3 of 12);
-
-  //   &:nth-child(2n + 1) {
-  //     clear: none;
-  //   }
-
-  //   &:nth-child(4n + 1) {
-  //     clear: both;
-  //   }
-
-  //   &:nth-child(4n + 2) {
-  //     clear: none;
-  //     margin-left: gutter(4 of 12);
-  //   }
-
-  //   &:nth-child(4n + 3) {
-  //     clear: none;
-  //     margin-left: gutter(4 of 12);
-  //   }
-
-  //   &:nth-child(4n + 4) {
-  //     clear: none;
-  //     margin-left: gutter(4 of 12);
-  //   }
-  // }
-
-  // @include breakpoint($medium) {
-  //   margin-left: 0 !important; /* override margin */
-  //   margin-right: 0 !important; /* override margin */
-  //   width: span(4 of 12) !important; /* Adjust the column width for 3 columns */
-  
-  //   &:nth-child(3n + 1) {
-  //     clear: both !important; /* Clear at the start of each new row */
-  //   }
-  
-  //   &:nth-child(3n + 2), &:nth-child(3n + 3) {
-  //     clear: none !important;
-  //     margin-left: gutter(1 of 12) !important; /* Add gutter spacing between columns */
-  //   }
-  // }  
-
-
 
   .archive__item-title {
     margin-top: 0.5em;
@@ -264,15 +355,22 @@ h2.archive__item-title:first-of-type {
 
 // Post Page
 
+.page__content p {
+  margin: 0 0 1em;
+}
+
 .screenshot img {
-  border-radius: 0.75em !important;
+  // border-radius: 0.75em !important;
   box-shadow: $box-shadow !important;
 }
 
 .page__meta {
   font-size: $type-size-6 !important;
-  border-top: 1px solid $lines-color !important;
-  padding-top: 0.5em;
+}
+
+.archive__item .page__meta {
+  padding-top: 1em;
+  border-top: $border !important;
 }
 
 .page__meta,
@@ -292,7 +390,7 @@ h2.archive__item-title:first-of-type {
 }
 
 .page__meta p {
-  border-bottom: 1px solid $lines-color !important;
+  border-bottom: $border !important;
   padding: 0.5em 0 !important;
 }
 
@@ -301,7 +399,7 @@ h2.archive__item-title:first-of-type {
 }
 
 .pagination--pager {
-  border: 1px solid $lines-color !important;
+  border: $border !important;
 }
 
 .page__taxonomy-item,
@@ -313,7 +411,7 @@ h2.archive__item-title:first-of-type {
 
 .notice {
   background-color: $background-color !important;
-  border: 1px solid $lines-color !important;
+  border: $border !important;
   color: $lines-color !important;
   font-size: inherit !important;
 }
@@ -324,77 +422,3 @@ h2.archive__item-title:first-of-type {
 }
 
 // End Post ----------------------------- //
-
-// Sidebar
-
-.author__avatar img {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
-}
-
-.author__avatar img:hover {
-  -webkit-filter: none;
-  filter: none;
-}
-
-
-h3.author__name {
-  font-size: $type-size-3 !important;
-}
-
-.sticky {
-  top: 0 !important;
-}
-
-.toc {
-  color: $gray;
-  border: none;
-  position: fixed;
-  display: none !important;
-
-
-  @include breakpoint($large) {
-    display: block !important;
-  }
-  
-  .nav__title {
-    background-color: $background-color;
-    color: $lines-color;
-    i {
-      display: none;
-    }
-  }
-  // Scrollspy marks toc items as .active when they are in focus
-  .active a {
-    @include yiq-contrasted($primary-color);
-  }
-}
-
-.toc__menu {
-  font-weight: 100 !important;
-  font-size: $type-size-5;
-  li::marker {
-    content: none !important;
-  }
-}
-
-// End Sidebar ----------------------------- //
-
-// Syntax Highlighting
-
-div.highlighter-rouge,
-figure.highlight, code
-{
-  font-size: inherit !important;
-  font-weight: 200 !important;
-  line-height: inherit !important;
-  color: $text-color !important;
-  background-color: mix($background-color, #000, 75%) !important;
-}
-
-.highlight .c {
-    color: $lines-color;
-    font-style: italic;
-  }
-
-// End Syntax Highlighting ----------------------------- //
