@@ -72,12 +72,11 @@ $border: 1px solid $lines-color !default;
 * {
   border: none !important;
   border-radius: 0 !important;
-  letter-spacing: -0.05em !important;
-  box-shadow: none !important;
 }
 
 body {
   line-height: 1.7;
+  letter-spacing: -0.05em !important;
 }
 
 html {
@@ -148,6 +147,10 @@ ul {
   list-style-position: inside;
 }
 
+ul.author__urls li:last-of-type {
+  margin-bottom: 0;
+}
+
 li * {
   display: inline-block !important;
 }
@@ -164,6 +167,18 @@ figcaption {
   color: $lines-color !important;
   display: block !important;
   margin: -1em 0 1em 0 !important;
+}
+
+tr {
+  border-bottom: $border !important;
+  font-size: $type-size-4 !important;
+  &:last-of-type {
+    border-bottom: none !important;
+  }
+}
+
+td {
+  padding: 1em 1em 1em 0 !important;
 }
 
 // End Misc ----------------------------- //
@@ -203,6 +218,19 @@ figcaption {
     @include breakpoint($large) {
       display: block;
     }
+  }
+}
+
+.author__urls {
+    box-shadow: $box-shadow !important;
+    margin-top: 0;
+    border: $border !important;
+    &:before, &:after {
+      display: none !important;
+    }
+  @include breakpoint($large) {
+    box-shadow: none !important;
+    border: none !important;
   }
 }
 
@@ -307,7 +335,8 @@ h2.archive__item-title:first-of-type {
   margin-top: 0 !important;
 }
 
-.page__inner-wrap, .archive {
+.page__inner-wrap,
+.archive {
   margin: 0 !important;
   padding-top: 2em !important;
   padding-bottom: 2em !important;
@@ -371,6 +400,11 @@ h2.archive__item-title:first-of-type {
   box-shadow: $box-shadow !important;
 }
 
+.page__meta,
+#footer {
+  color: $lines-color !important;
+}
+
 .page__meta {
   font-size: $type-size-6 !important;
 }
@@ -378,11 +412,6 @@ h2.archive__item-title:first-of-type {
 .archive__item .page__meta {
   padding-top: 1em;
   border-top: $border !important;
-}
-
-.page__meta,
-#footer {
-  color: $lines-color !important;
 }
 
 .page__meta-sep {
@@ -407,6 +436,10 @@ h2.archive__item-title:first-of-type {
 
 .pagination--pager {
   border: $border !important;
+}
+
+a.disabled {
+  opacity: 0.3 !important;
 }
 
 .page__taxonomy-item,
