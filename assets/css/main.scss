@@ -258,16 +258,18 @@ td {
 
 .toc {
   color: $gray;
+  background-color: transparent !important;
   border: none;
   position: fixed;
   display: none !important;
-
+  box-shadow: none !important;
+  
   @include breakpoint($large) {
     display: block !important;
   }
 
   .nav__title {
-    background-color: $background-color;
+    background-color: transparent !important;
     color: $lines-color;
     i {
       display: none;
@@ -453,6 +455,7 @@ a.disabled {
   border: $border !important;
   color: $lines-color !important;
   font-size: inherit !important;
+  box-shadow: none;
 }
 
 .notice a {
