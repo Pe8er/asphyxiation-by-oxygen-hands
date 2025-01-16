@@ -69,7 +69,7 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Asphyxiation by<br />Oxygen Hands"
+  name   : "Asphyxiation by Oxygen Hands"
   bio   : "Piotr Gajos"
   avatar : "/assets/images/bio-photo.jpg"
   links:

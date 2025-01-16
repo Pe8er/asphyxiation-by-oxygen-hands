@@ -31,7 +31,7 @@ $h-size-6: 1em !default;
 
 // Color Primitives
 $black: #303436;
-$white: #E4E6E7;
+$white: #e4e6e7;
 $red: #b12a59;
 
 $dark-theme: true;
@@ -142,7 +142,8 @@ iframe,
   margin-bottom: 1em !important;
 }
 
-ol, ul {
+ol,
+ul {
   padding-inline-start: initial;
   list-style-position: inside;
 }
@@ -185,25 +186,39 @@ figcaption {
   text-transform: uppercase;
 }
 
-.visible-links a:hover:before {
-  display: none;
-}
+// .visible-links a:hover:before {
+//   display: none;
+// }
 
 // Sidebar ----------------------------- //
 
 .sidebar {
   margin-top: 1em;
   opacity: 1 !important;
+
+  .h-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include breakpoint($large) {
+      display: block;
+    }
+  }
 }
 
-.author__avatar img {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
-}
-
-.author__avatar img:hover {
-  -webkit-filter: none;
-  filter: none;
+.author__avatar {
+  vertical-align: middle !important;
+  height: auto;
+  img {
+    border: $border !important;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    padding: 0;
+  }
+  img:hover {
+    -webkit-filter: none;
+    filter: none;
+  }
 }
 
 .sticky {
@@ -222,7 +237,7 @@ figcaption {
   @include breakpoint($large) {
     display: block !important;
   }
-  
+
   .nav__title {
     background-color: $background-color;
     color: $lines-color;
@@ -241,10 +256,6 @@ figcaption {
   font-size: $type-size-5;
 }
 
-.author__content {
-  vertical-align: middle;
-}
-
 .author__bio {
   display: none !important;
   @include breakpoint($large) {
@@ -252,15 +263,12 @@ figcaption {
   }
 }
 
-.author__urls-wrapper {
-  margin-top: 1em;
-}
-
 // End Sidebar ----------------------------- //
 
 // Footer ----------------------------- //
 
-.page__footer, #footer {
+.page__footer,
+#footer {
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -277,8 +285,8 @@ figcaption {
 // Syntax Highlighting ----------------------------- //
 
 div.highlighter-rouge,
-figure.highlight, code
-{
+figure.highlight,
+code {
   font-size: inherit !important;
   font-weight: 300 !important;
   line-height: inherit !important;
@@ -287,9 +295,9 @@ figure.highlight, code
 }
 
 .highlight .c {
-    color: $lines-color;
-    font-style: italic;
-  }
+  color: $lines-color;
+  font-style: italic;
+}
 
 // End Syntax Highlighting ----------------------------- //
 
@@ -299,13 +307,13 @@ h2.archive__item-title:first-of-type {
   margin-top: 0 !important;
 }
 
-.page__inner-wrap {
-  margin-top: 0 !important;
+.page__inner-wrap, .archive {
+  margin: 0 !important;
   padding-top: 2em !important;
   padding-bottom: 2em !important;
   @include breakpoint($large) {
-    border-left: $border !important; 
     padding-left: 2em;
+    border-left: $border !important;
   }
 }
 
@@ -333,7 +341,7 @@ h2.archive__item-title:first-of-type {
       @include breakpoint($small) {
         max-height: 200px;
       }
-  
+
       @include breakpoint($medium) {
         max-height: 400px;
       }
@@ -348,7 +356,6 @@ h2.archive__item-title:first-of-type {
   .archive__item-excerpt {
     display: none;
   }
-
 }
 
 // End Archive ----------------------------- //
@@ -407,7 +414,6 @@ h2.archive__item-title:first-of-type {
   margin: 0 !important;
   padding: 0 !important;
 }
-
 
 .notice {
   background-color: $background-color !important;
