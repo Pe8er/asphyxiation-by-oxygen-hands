@@ -34,8 +34,6 @@ $black: #303436;
 $white: #e4e6e7;
 $red: #b12a59;
 
-$dark-theme: true;
-
 // Light Theme Tokens
 $background: $white;
 $foreground: $black;
@@ -43,6 +41,8 @@ $url: $foreground;
 $accent: mix($red, $background, 90%);
 $link: $black;
 $lines: mix($background, $foreground, 50%);
+
+$dark-theme: true;
 
 @if $dark-theme {
   $background: $black;
@@ -113,11 +113,6 @@ h3 {
   letter-spacing: -0.09em !important;
 }
 
-.page__content h2,
-.list__item {
-  border-bottom: $border !important;
-}
-
 a {
   text-decoration: none;
   color: $link-color !important;
@@ -125,6 +120,10 @@ a {
 
 a:hover {
   text-decoration: underline $link-color 5% !important;
+}
+
+a.disabled {
+  opacity: 0.3 !important;
 }
 
 .pagination--pager:hover {
@@ -179,6 +178,10 @@ tr {
 
 td {
   padding: 1em 1em 1em 0 !important;
+}
+
+blockquote {
+  border-left: $border !important;
 }
 
 // End Misc ----------------------------- //
@@ -393,6 +396,11 @@ h2.archive__item-title:first-of-type {
 
 // Post Page
 
+.page__content h2,
+.list__item {
+  border-bottom: $border !important;
+}
+
 .page__content p {
   margin: 0 0 1em;
 }
@@ -411,7 +419,7 @@ h2.archive__item-title:first-of-type {
   font-size: $type-size-6 !important;
 }
 
-.archive__item .page__meta {
+.page__meta {
   padding-top: 1em;
   border-top: $border !important;
 }
@@ -438,10 +446,6 @@ h2.archive__item-title:first-of-type {
 
 .pagination--pager {
   border: $border !important;
-}
-
-a.disabled {
-  opacity: 0.3 !important;
 }
 
 .page__taxonomy-item,
