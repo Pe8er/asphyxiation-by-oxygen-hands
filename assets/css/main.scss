@@ -415,13 +415,15 @@ h2.archive__item-title:first-of-type {
   color: $lines-color !important;
 }
 
-.page__meta {
-  font-size: $type-size-6 !important;
-}
 
 .page__meta {
+  font-size: $type-size-6 !important;
   padding-top: 1em;
   border-top: $border !important;
+}
+
+footer.page__meta {
+  border-top: none !important;
 }
 
 .page__meta-sep {
