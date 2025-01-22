@@ -1,5 +1,5 @@
 ---
-title: "Homelab #1: Misc Setup"
+title: "Homelab: Misc Setup"
 date: 2025-01-02
 # last_modified_at: 2025-01-09
 categories:
@@ -13,7 +13,7 @@ An assortments of things I set up on my Pi to prepare it for operation.
 
 <!--more-->
 
-This post is a part of my *Homelab Series*. [See the index here](/Homelab-0-Introduction).
+This post is a part of my *Homelab Series*. [See the index here](/Homelab-Introduction).
 {: .notice}
 
 

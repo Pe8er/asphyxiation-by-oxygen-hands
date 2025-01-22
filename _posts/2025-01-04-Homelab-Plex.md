@@ -1,5 +1,5 @@
 ---
-title: "Homelab #3: Plex Media Server"
+title: "Homelab: Plex Media Server"
 date: 2025-01-04
 header:
   teaser: /assets/images/plex.jpg
@@ -17,7 +17,7 @@ I use Plex Media Server as my personal, local/cloud music library. I have a life
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here](/Homelab-0-Introduction).
+This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
 {: .notice}
 
 ## Plex Media Server

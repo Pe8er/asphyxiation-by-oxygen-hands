@@ -1,5 +1,5 @@
 ---
-title: "Homelab #2: Installing Apps"
+title: "Homelab: Installing Apps"
 date: 2025-01-03
 header:
   teaser: /assets/images/portainer.jpg
@@ -18,7 +18,7 @@ I run a bunch of apps on my Pi. Most of them via Docker.
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here](/Homelab-0-Introduction).
+This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
 {: .notice}
 
 ## Syncthing
@@ -65,7 +65,7 @@ And then `CTRL` + `C` to kill it. Edit configuration file:
 nano ~/.local/state/syncthing/config.xml
 ```
 
-Look for the following line (`CTRL` + `W`) and replace with the ([preferrably static](http://localhost:4000/Homelab-1-Misc-Setup/#define-static-ip)) IP of your Pi:
+Look for the following line (`CTRL` + `W`) and replace with the ([preferrably static](http://localhost:4000/Homelab-Misc-Setup/#define-static-ip)) IP of your Pi:
 
 ```xml
 <address>192.168.1.132:8384</address>

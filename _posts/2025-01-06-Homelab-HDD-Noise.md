@@ -1,5 +1,5 @@
 ---
-title: "Homelab #5: Reducing External Hard Drive Noise"
+title: "Homelab: Reducing External Hard Drive Noise"
 date: 2025-01-06
 # header:
 #   teaser: /assets/images/photo-1589995186053-91d65273cd68.avif
@@ -18,7 +18,7 @@ I have a 12 TB WD Essentials USB hard drive connected to my Raspberry Pi 3B. It'
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here](/Homelab-0-Introduction).
+This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
 {: .notice}
 
 ## Install

@@ -135,6 +135,10 @@ a.disabled {
   text-decoration: none !important;
 }
 
+ul.social-icons li:first-of-type{
+  display: none !important;
+}
+
 iframe,
 .fluid-width-video-wrapper {
   margin-bottom: 1em !important;
