@@ -113,6 +113,10 @@ h3 {
   letter-spacing: -0.09em !important;
 }
 
+img {
+  border: $border !important;
+}
+
 p, li {
 font-weight: 200 !important;
 }
@@ -368,6 +372,53 @@ h2.archive__item-title:first-of-type {
   margin-bottom: 4em !important;
 }
 
+.archive__item {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1em; /* Space between the text and the image */
+  
+  @include breakpoint($medium) {
+    flex-direction: row;
+  }
+}
+
+.archive__item-content {
+  flex: 1; /* Let the text content take up remaining space */
+  border-bottom: $border !important;
+  order: 2;
+  
+  @include breakpoint($medium) {
+    // padding-bottom: 1em;
+    order: 1;
+  }
+}
+
+.archive__item-teaser {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  order: 1;
+  
+  @include breakpoint($medium) {
+    width: 8em;
+    order: 2;
+  }
+
+  img {
+    border: $border !important;
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+    width: 100% !important; /* Make the image fill the container's width */
+    height: 100% !important; /* Stretch the image to fill the container's height */
+    object-fit: cover; /* Crop the image without distorting it */
+    &:hover {
+      -webkit-filter: none;
+      filter: none;
+    }
+  }
+}
+
 .grid__item {
   margin-bottom: 2em;
 
@@ -409,8 +460,7 @@ h2.archive__item-title:first-of-type {
 
 // Post Page
 
-.page__content h2,
-.list__item {
+.page__content h2 {
   border-bottom: $border !important;
 }
 
@@ -419,7 +469,6 @@ h2.archive__item-title:first-of-type {
 }
 
 .screenshot img {
-  // border-radius: 0.75em !important;
   box-shadow: $box-shadow !important;
 }
 
