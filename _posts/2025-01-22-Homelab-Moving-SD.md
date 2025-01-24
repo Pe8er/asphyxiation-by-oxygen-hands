@@ -36,12 +36,12 @@ sudo dd if=/dev/rdisk4 of=/Users/$USER/Desktop/pi.dmg status=progress
 
 If successful, command output should show backup progress in real time:
 
-```
+```conf
 1371570688 bytes (1372 MB, 1308 MiB) transferred 158.002s, 8681 kB/s
 ```
 
-Warning: it is quite a slow process. You may want to run `caffeinate` to stop your computer from going to sleep.
-{: .notice--warning}
+**Warning!** It is quite a slow process. You may want to run `caffeinate` to stop your computer from going to sleep.
+{: .notice}
 
 When backup has completed, insert the new SD card, format it and use pretty much the previous command, just reversed. Make sure to check your `/dev/diskN` index first.
 
@@ -59,12 +59,11 @@ diskutil umount /dev/disk4s1
 
 The way `dd` works, Pi will think the new SD card is the same size as the old one (14.4G):
 
-```bash
+```conf
 Device         Boot   Start      End  Sectors  Size Id Type
 /dev/mmcblk0p1         8192  1056767  1048576  512M  c W95 FAT32 (LBA)
 /dev/mmcblk0p2      1056768 31354879 30298112 14.4G 83 Linux
 ```
-
 
 We need to resize the partition! Once Pi boots up with the new SD card in, ssh into it and run the Configuration Tool:
 
@@ -76,7 +75,7 @@ Once it loads, go to `6 Advanced Options` and then choose `A1 Expand Filesystem`
 
 Check if it worked with `sudo fdisk -l`:
 
-```bash
+```conf
 Device         Boot   Start       End   Sectors  Size Id Type
 /dev/mmcblk0p1         8192   1056767   1048576  512M  c W95 FAT32 (LBA)
 /dev/mmcblk0p2      1056768 124735487 123678720   59G 83 Linux

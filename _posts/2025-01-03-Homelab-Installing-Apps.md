@@ -67,7 +67,7 @@ nano ~/.local/state/syncthing/config.xml
 
 Look for the following line (`CTRL` + `W`) and replace with the ([preferrably static](http://localhost:4000/Homelab-Misc-Setup/#define-static-ip)) IP of your Pi:
 
-```xml
+```conf
 <address>192.168.1.132:8384</address>
 ```
 
@@ -85,7 +85,7 @@ sudo systemctl start syncthing@$USER
 
 Syncthing is available:
 
-```bash
+```conf
 http://[PI IP]:8384
 ```
 
@@ -154,7 +154,7 @@ sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/do
 
 Portainer should be available:
 
-```bash
+```conf
 http://[PI IP]:9000
 ```
 

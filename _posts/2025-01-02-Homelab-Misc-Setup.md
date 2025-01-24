@@ -33,7 +33,7 @@ sudo nano /boot/firmware/cmdline.txt
 
 Add the IP you want at the end. Doesn't need to be the one you found above.
 
-```bash
+```conf
 ip=192.168.1.132
 ```
 
@@ -62,7 +62,7 @@ sudo nano /boot/firmware/cmdline.txt
 
 Add at the end of the first (and only) line:
 
-```bash
+```conf
 dtoverlay=disable-wifi
 ```
 
@@ -84,24 +84,30 @@ Add drive info to the scary auto-mounting configuration file:
 ```bash
 sudo nano /etc/fstab
 ```
-Add new line, paste the following and replace [UUID] and [TYPE] with your drive's properties:
-```bash
-UUID=[UUID] /mnt/media [TYPE] defaults,auto,users,rw,nofail,noatime 0 0
+
+Add a new line at the end and paste the following and replace [UUID], [PATH] and [TYPE] with your drive's properties:
+
+```conf
+UUID=[UUID] [PATH] [TYPE] defaults,uid=1000,gid=1000,users,auto,nofail,noatime 0 0
 ```
 Restart the service, unmount, re-mount the drive and reboot to check if everything works:
 
 ```bash
-systemctl daemon-reload
-```
-```bash
 sudo umount /dev/sdaN
 ```
+
+```bash
+systemctl daemon-reload
+```
+
 ```bash
 sudo mount -a
 ```
+
 ```bash
 sudo reboot
 ```
+
 ## Fix Permissions
 
 I think I did this to get transmission to write to the external drive.
@@ -110,10 +116,10 @@ I think I did this to get transmission to write to the external drive.
 sudo su
 ```
 ```bash
-find [YOURDRIVEPATH] -type d -exec chmod 755 {} \;
+find /mnt/media -type d -exec chmod 755 {} \;
 ```
 ```bash
-find [YOURDRIVEPATH] -type f -exec chmod 644 {} \;
+find /mnt/media -type f -exec chmod 644 {} \;
 ```
 
 ## Samba Share for Easy File Management
@@ -130,17 +136,23 @@ Edit the configuration file:
 sudo nano /etc/samba/smb.conf
 ```
 
-Find and customize the following lines. Make sure to replace `path` with the path where the drive you want to share is mounted. I set up two shares:
+Find and customize the following lines. Make sure to replace `path` with the path where the drive you want to share is mounted. I set up three shares:
 
-```
+```conf
 [media]
-path = /mnt/media/
+path = /mnt/media
 writeable = yes
 browseable = yes
 public = yes
 
 [pe8er]
 path = /home/pe8er/
+writeable = yes
+browseable = yes
+public = yes
+
+[ssd-sandisk]
+path = /mnt/ssd-sandisk
 writeable = yes
 browseable = yes
 public = yes

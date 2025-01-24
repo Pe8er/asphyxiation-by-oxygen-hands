@@ -48,9 +48,9 @@ And install!
 sudo apt install plexmediaserver
 ```
 
-PMS is available here:
+Plex Media Server is available:
 
-```bash
+```conf
 http://[PI IP]:32400/web/
 ```
 
@@ -78,6 +78,6 @@ sudo reboot
 
 Open Plexamp and configure it:
 
-```bash
+```conf
 http://[PI IP]:32500
 ```

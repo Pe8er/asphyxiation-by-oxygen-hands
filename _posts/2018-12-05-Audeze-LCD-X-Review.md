@@ -1,6 +1,6 @@
 ---
 title: "Audeze LCD-X: A Review"
-date: 2018-12-05
+date: 2014-12-05
 last_modified_at: 2025-01-09
 header:
   teaser: /assets/images/audeze-lcd-x-review/header.jpg
@@ -13,10 +13,7 @@ tags:
 
 ![Header](/assets/images/audeze-lcd-x-review/header.jpg)
 
-Note: this review was originally written sometime in 2014. I’m posting it here to inspire myself to write more about audio gear and music.
-{: .notice}
-
-I have had my pair of Audeze LCD-X for about a month now. Considering how few real world impressions of these seem to be available out there, I thought I’d scribble a few words about this rather interesting headphone. I have decided not to write a review immediately after purchase, hoping time would alleviate the _wallet-hole-induced-praise_ mechanism. Let’s see if it worked!
+I have had my pair of Audeze LCD-X for about a month now. Considering how few real world impressions of these seem to be available out there, I thought I’d scribble a few words about this rather interesting headphone. <!--more-->I have decided not to write a review immediately after purchase, hoping time would alleviate the _wallet-hole-induced-praise_ mechanism. Let’s see if it worked!
 
 <!--more-->
 
@@ -40,7 +37,7 @@ What you’re about to read is a set of entirely subjective opinions, rather clu
 
 ### Burn In
 
-![](/assets/images/audeze-lcd-x-review/steve-brule.gif)
+![Steve Brule in disbelief](/assets/images/audeze-lcd-x-review/steve-brule.gif)
 
 ## The Sound
 
@@ -78,7 +75,7 @@ I’ve always been told mids are important for metal. And I suppose I am a bit o
 
 Metal is one of these genres where more of often than not, production quality isn’t great. Listening to my favorite albums on hi-end open dynamics made me pretty sad. Power and punch were replaced with dryness, distortion, lack of control. I had found top-tier dynamic headphones to steer way too far into the land of analytics, and lose their so-called musicality on the way. What happened with LCD-X then?
 
-*"Dancers to a Discordant System"* is one of my favorite tracks by the mentalist progressive metal Swedish group **Meshuggah**.
+_"Dancers to a Discordant System"_ is one of my favorite tracks by the mentalist progressive metal Swedish group **Meshuggah**.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0DxI_ZOGbXo?si=dgQ4M47flv6yfD3n" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -88,7 +85,7 @@ Well recorded heavy stuff, such as early Rage Against The Machine, Mnemic, early
 
 I suppose it’s worth making a small comparison between LCD-X and LCD-3 here, because metal music is where differences between these two are quite vivid. The latter offer a more laid-back, polite and almost _slower_ presentation of metal music. It doesn’t bite like on LCD-X, where sound retains aggression, kick and drive. LCD-3 manages to extract the best aspects of poor recordings as well as, if not better than, LCD-X. And then its incredible refinement rounds the rough edges. Don’t get me wrong — it’s not a compromise. It still sounds juicy and beautiful, but the anger is a little subdued. I suppose LCD-3 is better suited for slower kinds of metal. Dense and fast stuff sounds better on LCD-X in my opinion.
 
-Taking a break from self-induced ear bleeding, let’s check out Lisa Gerrard’s *"Sacrifice"*.
+Taking a break from self-induced ear bleeding, let’s check out Lisa Gerrard’s _"Sacrifice"_.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BbIiXvPrH_o?si=wf_yCEhVS2p-TG1I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -100,7 +97,7 @@ Let’s put a stop to this unending torrent of delight though! Mrs Gerrard’s p
 
 ### Treble
 
-I think that Porcupine Tree’s *"Signify"* is a great example of very well recorded cymbals.
+I think that Porcupine Tree’s _"Signify"_ is a great example of very well recorded cymbals.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/_RnaZkhlzQU?si=8wHqW6wWEG2KX2aC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -120,7 +117,7 @@ Even though I eventually grew to like the treble, I have to take away one point 
 
 ### Soundstage and Imaging
 
-Let’s start with *"Possession"* by Genesis P-Orridge & Astrid Monroe.
+Let’s start with _"Possession"_ by Genesis P-Orridge & Astrid Monroe.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VmauNd91fs0?si=7eknZUVhQzI-C8uW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -130,13 +127,13 @@ Deep breath.
 
 Upon hearing this song for the first time with LCD-X, I literally jumped out of my seat. P-Orridge’s haunting, devilish voice appears as if he (she?) is whispering in one’s ear standing behind them, leaning on one’s shoulder. The impression of claustrophobia and realism of placement of the voice contribute to an utterly terrifying experience.
 
-On another hand, soundstage in *"Damage Done"* by Moderat is rather deep.
+On another hand, soundstage in _"Damage Done"_ by Moderat is rather deep.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/eHJZ5wkM99s?si=oFHcaWkOqSXatz2D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Apart from the beautifully rendered music, there are layers upon layers of easily identifiable noises, synthesizers, voices and laughter, extending very deep and surrounding the head. Well done.
 
-I wrote about [*"Why So Serious?"*](https://www.youtube.com/watch?v=KjShkVqz2a4) earlier. Apart from the bass storm, the above-mentioned section offers an incredible play of various instruments and noises in 3D space. With LCD-X, they are present and easily to distinguish in space. However, the soundstage is much more compact than on T1 or PS1000. Presentation is intimate, in-your-face.
+I wrote about [_"Why So Serious?"_](https://www.youtube.com/watch?v=KjShkVqz2a4) earlier. Apart from the bass storm, the above-mentioned section offers an incredible play of various instruments and noises in 3D space. With LCD-X, they are present and easily to distinguish in space. However, the soundstage is much more compact than on T1 or PS1000. Presentation is intimate, in-your-face.
 
 It seems as if 3D imaging is done very well, the soundstage is deep, although quite narrow. In comparison to dynamic flagships, that is. I suppose it’s a compromise imposed by planar magnetic technology — soundstage width was sacrificed to achieve the more intimate and energetic presentation. I personally don’t mind that, however it is a flaw that can’t be ignored.
 
@@ -146,11 +143,11 @@ It seems as if 3D imaging is done very well, the soundstage is deep, although qu
 
 LCD-X is serious business.
 
-![](/assets/images/audeze-lcd-x-review/lcd-x-1.jpg)
+![LCD-X](/assets/images/audeze-lcd-x-review/lcd-x-1.jpg)
 
 With wood replaced by black metal, they look more subdued and _differently_ elegant than other Audeze offerings. They remind me of military equipment — hefty and rugged, stealth matte black finish. Headband works well and doesn’t cause pain, thanks to the huge, soft pads. However, I suppose it wouldn’t hurt if there was more padding on the headband.
 
-![](/assets/images/audeze-lcd-x-review/lcd-x-2.jpg)
+![LCD-X](/assets/images/audeze-lcd-x-review/lcd-x-2.jpg)
 
 Clamping force problem — a source of concern with LCD-2 (and rightfully so, my cheekbones were crying for help after just 10 minutes with those on) — doesn’t exist here. However, the pads are so soft and attempt to hold on to my head so delicately, that I can’t perform any excessive head movements. It’s best to sit still. Which is a bit of annoyance, since the music LCD-X produce is so headbang-inducing. Minus one point for that.
 

@@ -17,7 +17,7 @@ I synchronize my Calibre library between my Mac and Pi using Syncthing. I add an
 
 <!--more-->
 
-At some point, I'm planning to use it as a syncing mechanism for my Kobo e-reader.
+At some point, I'll probably use it as a syncing mechanism for my Kobo e-reader.
 
 This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
 {: .notice}
@@ -51,7 +51,7 @@ Calibre Web doesn't reload automatically when changes are made to it's database 
 
 Before you start, make sure you have this environment variable in your Calibre-Web container:
 
-```bash
+```conf
 CALIBRE_RECONNECT=true
 ```
 
@@ -113,7 +113,6 @@ WorkingDirectory=/home/[YOUR USERNAME]
 [Install]
 WantedBy=multi-user.target
 ```
-
 
 Enable service:
 

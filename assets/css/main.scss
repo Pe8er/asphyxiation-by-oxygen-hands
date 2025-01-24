@@ -63,6 +63,7 @@ $link-color: $link !default;
 $lines-color: $lines !default;
 $box-shadow: 0 1em 2em 0 mix(#000, $black, 25%) !default;
 $border: 1px solid $lines-color !default;
+// $global-transition: all 0.5s ease-in-out !default;
 
 @import "minimal-mistakes";
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
@@ -118,16 +119,23 @@ img {
 }
 
 p, li {
-font-weight: 200 !important;
+font-weight: 300 !important;
 }
 
 a {
+  position: relative !important;
   text-decoration: none;
   color: $link-color !important;
 }
 
 a:hover {
-  text-decoration: underline $link-color 5% !important;
+  color: $accent !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: $accent !important;
+  text-decoration: underline mix($background-color, $accent, 50%) solid 10% !important;
 }
 
 a.disabled {
@@ -199,6 +207,9 @@ td {
 
 blockquote {
   border-left: $border !important;
+  padding-inline: 2em;
+  margin-left: 2em;
+  color: $lines-color;
 }
 
 // End Misc ----------------------------- //
@@ -338,7 +349,6 @@ div.highlighter-rouge,
 figure.highlight,
 code {
   font-size: inherit !important;
-  font-weight: 200 !important;
   line-height: inherit !important;
   color: $text-color !important;
   background-color: mix($background-color, #000, 75%) !important;
@@ -456,6 +466,9 @@ h2.archive__item-title:first-of-type {
   }
 }
 
+.archive__item-excerpt {
+  font-size: inherit;
+}
 // End Archive ----------------------------- //
 
 // Post Page
@@ -532,11 +545,6 @@ footer.page__meta {
   color: $lines-color !important;
   font-size: inherit !important;
   box-shadow: none;
-}
-
-.notice a {
-  // color: $primary-color !important;
-  color: mix($text-color, $lines-color, 90%) !important;
 }
 
 // End Post ----------------------------- //
