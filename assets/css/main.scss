@@ -113,6 +113,10 @@ h3 {
   letter-spacing: -0.09em !important;
 }
 
+p, li {
+font-weight: 200 !important;
+}
+
 a {
   text-decoration: none;
   color: $link-color !important;
@@ -124,11 +128,6 @@ a:hover {
 
 a.disabled {
   opacity: 0.3 !important;
-}
-
-.pagination--pager:hover {
-  color: $background-color !important;
-  text-decoration: none !important;
 }
 
 .social-icons a {
@@ -146,16 +145,21 @@ iframe,
 
 ol,
 ul {
-  padding-inline-start: initial;
-  list-style-position: inside;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.page__content {
+  ol {
+  padding-left: 1.5em !important;
+  }
+  ul {
+  padding-left: 1em !important;
+  }
 }
 
 ul.author__urls li:last-of-type {
   margin-bottom: 0;
-}
-
-li * {
-  display: inline-block !important;
 }
 
 li::marker {
@@ -164,6 +168,11 @@ li::marker {
 }
 ul li::marker {
   content: "+ ";
+}
+
+.current {
+  background-color: transparent !important;
+  border: $border !important;
 }
 
 figcaption {
@@ -325,7 +334,7 @@ div.highlighter-rouge,
 figure.highlight,
 code {
   font-size: inherit !important;
-  font-weight: 300 !important;
+  font-weight: 200 !important;
   line-height: inherit !important;
   color: $text-color !important;
   background-color: mix($background-color, #000, 75%) !important;
@@ -452,6 +461,14 @@ footer.page__meta {
 
 .pagination--pager {
   border: $border !important;
+  &:hover {
+    color: $background-color !important;
+    text-decoration: none !important;
+  }
+}
+
+.pagination li:first-of-type a {
+  padding-left: 0 !important;
 }
 
 .page__taxonomy-item,
