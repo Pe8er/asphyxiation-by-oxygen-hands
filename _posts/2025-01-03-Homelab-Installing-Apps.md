@@ -388,7 +388,11 @@ services:
       PGID: 1000
       TZ: Europe/Warsaw
       BASE_URL: http://localhost:9999
+<<<<<<< HEAD
       OPENAI_API_KEY: [OPENAI_API_KEY]
+=======
+      OPENAI_API_KEY: [YOUR API]
+>>>>>>> 17ac227 (Remove OpenAI)
 
 volumes:
   mealie-data:
