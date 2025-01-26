@@ -22,8 +22,8 @@ $type-size-7: 0.6em !default;
 $type-size-8: 0.5em !default;
 
 // Headline Scale
-$h-size-1: 3em !default;
-$h-size-2: 2em !default;
+$h-size-1: 2em !default;
+$h-size-2: 1.75em !default;
 $h-size-3: 1.5em !default;
 $h-size-4: 1.0625em !default;
 $h-size-5: 1.03125em !default;
@@ -48,7 +48,7 @@ $dark-theme: true;
   $background: $black;
   $foreground: mix($background, $white, 25%);
   $url: $foreground;
-  $accent: mix($red, $background, 90%);
+  $accent: mix($red, $foreground, 80%);
   $link: #fff;
   $lines: mix($background, $foreground, 40%);
 }
@@ -63,7 +63,6 @@ $link-color: $link !default;
 $lines-color: $lines !default;
 $box-shadow: 0 1em 2em 0 mix(#000, $black, 25%) !default;
 $border: 1px solid $lines-color !default;
-// $global-transition: all 0.5s ease-in-out !default;
 
 @import "minimal-mistakes";
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
@@ -88,7 +87,7 @@ html {
   }
 
   @include breakpoint($large) {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   @include breakpoint($x-large) {
@@ -103,7 +102,7 @@ h4,
 h5,
 h6 {
   text-transform: uppercase;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   line-height: 1;
 }
 
@@ -118,11 +117,13 @@ img {
   border: $border !important;
 }
 
-p, li {
-font-weight: 300 !important;
+p,
+li {
+  font-weight: 300 !important;
 }
 
-a {
+a,
+li.active a {
   position: relative !important;
   text-decoration: none;
   color: $link-color !important;
@@ -133,21 +134,8 @@ a:hover {
   text-decoration: none !important;
 }
 
-a:hover {
-  color: $accent !important;
-  text-decoration: underline mix($background-color, $accent, 50%) solid 10% !important;
-}
-
 a.disabled {
   opacity: 0.3 !important;
-}
-
-.social-icons a {
-  text-decoration: none !important;
-}
-
-ul.social-icons li:first-of-type{
-  display: none !important;
 }
 
 iframe,
@@ -163,10 +151,10 @@ ul {
 
 .page__content {
   ol {
-  padding-left: 1.5em !important;
+    padding-left: 1.5em !important;
   }
   ul {
-  padding-left: 1em !important;
+    padding-left: 1em !important;
   }
 }
 
@@ -226,16 +214,6 @@ blockquote {
 
 // End Kill ----------------------------- //
 
-// Header ----------------------------- //
-
-.site-title {
-  text-transform: uppercase;
-}
-
-// .visible-links a:hover:before {
-//   display: none;
-// }
-
 // Sidebar ----------------------------- //
 
 .sidebar {
@@ -252,16 +230,49 @@ blockquote {
   }
 }
 
-.author__urls {
-    box-shadow: $box-shadow !important;
-    margin-top: 0;
-    border: $border !important;
-    &:before, &:after {
-      display: none !important;
-    }
+.author__name {
+  margin: 0;
+
   @include breakpoint($large) {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+}
+
+.author__urls {
+  box-shadow: $box-shadow !important;
+  padding: 1em !important;
+  border: $border !important;
+  &:before,
+  &:after {
+    display: none !important;
+  }
+  @include breakpoint($large) {
+    padding: 0 !important;
     box-shadow: none !important;
     border: none !important;
+  }
+}
+
+.author__avatar {
+  display: table-cell;
+  vertical-align: top;
+  width: 36px;
+  height: 36px;
+
+  @include breakpoint($large) {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  img {
+    max-width: 110px;
+
+    @include breakpoint($large) {
+      padding: 0;
+      border: 1px solid $border-color;
+    }
   }
 }
 
@@ -282,6 +293,12 @@ blockquote {
 
 .sticky {
   top: 0 !important;
+  ol {
+    padding-left: 0 !important;
+  }
+  ul {
+    padding-left: 0 !important;
+  }
   li::marker {
     content: none !important;
   }
@@ -294,7 +311,7 @@ blockquote {
   position: fixed;
   display: none !important;
   box-shadow: none !important;
-  
+
   @include breakpoint($large) {
     display: block !important;
   }
@@ -340,6 +357,15 @@ blockquote {
 
 #footer > footer > div > * {
   display: inline !important;
+}
+
+ul.social-icons {
+  li::before {
+    display: none !important;
+  }
+  li:first-of-type {
+  display: none !important;
+  }
 }
 // End Footer ----------------------------- //
 
@@ -387,7 +413,7 @@ h2.archive__item-title:first-of-type {
   flex-direction: column;
   align-items: stretch;
   gap: 1em; /* Space between the text and the image */
-  
+
   @include breakpoint($medium) {
     flex-direction: row;
   }
@@ -397,7 +423,7 @@ h2.archive__item-title:first-of-type {
   flex: 1; /* Let the text content take up remaining space */
   border-bottom: $border !important;
   order: 2;
-  
+
   @include breakpoint($medium) {
     // padding-bottom: 1em;
     order: 1;
@@ -409,7 +435,7 @@ h2.archive__item-title:first-of-type {
   overflow: hidden;
   display: flex;
   order: 1;
-  
+
   @include breakpoint($medium) {
     width: 8em;
     order: 2;
@@ -473,23 +499,31 @@ h2.archive__item-title:first-of-type {
 
 // Post Page
 
-.page__content h2 {
-  border-bottom: $border !important;
-}
+.page__content {
+  margin-top: 2em;
 
-.page__content p {
-  margin: 0 0 1em;
-}
-
-.screenshot img {
-  box-shadow: $box-shadow !important;
+  h2 {
+    border-bottom: $border !important;
+  }
+  p {
+    margin: 0 0 1em;
+    img {
+      margin-bottom: 2em;
+    }
+  }
+  .screenshot img {
+    box-shadow: $box-shadow !important;
+  }
 }
 
 .page__meta,
-#footer {
+#footer,
+.author__urls,
+.site-title {
   color: $lines-color !important;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
 }
-
 
 .page__meta {
   font-size: $type-size-6 !important;

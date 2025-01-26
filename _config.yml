@@ -16,8 +16,7 @@
 title: Asphyxiation by Oxygen Hands
 name: Piotr Gajos
 email: hello@pgajos.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Personal ramblings.
+description: Personal ramblings.
 github_username: Pe8er
 minimal_mistakes_skin: dark
 search: false

@@ -19,7 +19,7 @@ I synchronize my Calibre library between my Mac and Pi using Syncthing. I add an
 
 At some point, I'll probably use it as a syncing mechanism for my Kobo e-reader.
 
-This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
+This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
 {: .notice}
 
 ## Calibre Web

@@ -13,7 +13,7 @@ An assortments of things I set up on my Pi to prepare it for operation.
 
 <!--more-->
 
-This post is a part of my *Homelab Series*. [See the index here](/Homelab-Introduction).
+This post is a part of my *Homelab Series*. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
 {: .notice}
 
 

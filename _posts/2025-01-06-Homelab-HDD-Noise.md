@@ -11,7 +11,7 @@ I have a 12 TB WD Essentials USB hard drive connected to my Raspberry Pi 3B. It'
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
+This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
 {: .notice}
 
 ## Install

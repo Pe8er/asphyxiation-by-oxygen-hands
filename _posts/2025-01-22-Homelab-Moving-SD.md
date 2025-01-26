@@ -12,7 +12,7 @@ I'm tweaking my setup to reduce reliance on the noisy external hard drive. I wan
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
+This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
 {: .notice}
 
 ## Backup and Restore

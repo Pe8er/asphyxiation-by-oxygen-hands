@@ -17,7 +17,7 @@ I use Plex Media Server as my personal, local/cloud music library. I have a life
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
+This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
 {: .notice}
 
 ## Plex Media Server

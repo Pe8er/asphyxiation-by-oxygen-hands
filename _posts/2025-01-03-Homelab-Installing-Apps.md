@@ -18,7 +18,7 @@ I run a bunch of apps on my Pi. Most of them via Docker.
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here](/Homelab-Introduction).
+This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
 {: .notice}
 
 ## Syncthing
@@ -133,7 +133,7 @@ docker run hello-world
 
 If it worked, Terminal should show the following message:
 
-```
+```txt
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```
@@ -163,41 +163,41 @@ http://[PI IP]:9000
 The one and only [haugene/docker-transmission-openvpn](https://github.com/haugene/docker-transmission-openvpn).
 
 ```yaml
-version: '3.3'
+version: "3.3"
 services:
-    transmission-openvpn:
-        cap_add:
-            - NET_ADMIN
-        volumes:
-            - '/mnt/media/Piotrek/Downloads:/data'
-            - '/home/pe8er/docker/transmission:/config'
-            - '/mnt/media/Piotrek/Downloads/Completed:/completed'
-            - '/mnt/media/Piotrek/Downloads/Incomplete:/incomplete'
-            - '/mnt/media/Piotrek/Downloads/Watch:/watch'
-        environment:
-            - OPENVPN_PROVIDER=PIA
-            - OPENVPN_CONFIG=poland,germany,france,sweden
-            - OPENVPN_USERNAME=[USER]
-            - OPENVPN_PASSWORD=[PASSWORD]
-            - LOCAL_NETWORK=192.168.1.0/24
-            - CREATE_TUN_DEVICE=true
-            - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
-            - PUID=1000
-            - PGID=1000
-            - TZ=Europe/Warsaw
-            - TRANSMISSION_DOWNLOAD_DIR=/completed
-            - TRANSMISSION_HOME=/config/transmission-home
-            - TRANSMISSION_INCOMPLETE_DIR=/incomplete
-            - TRANSMISSION_WATCH_DIR=/watch
-            - TRANSMISSION_SCRIPT_TORRENT_ADDED_ENABLED=true
-            - TRANSMISSION_SCRIPT_TORRENT_ADDED_FILENAME=/config/transmission-home/scripts/transmission-add.sh
-        logging:
-            driver: json-file
-            options:
-                max-size: 10m
-        ports:
-            - '9091:9091'
-        image: haugene/transmission-openvpn
+  transmission-openvpn:
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - "/mnt/ssd-sandisk/Downloads:/data"
+      - "/home/pe8er/docker/transmission:/config"
+      - "/mnt/ssd-sandisk/Downloads/Completed:/completed"
+      - "/mnt/ssd-sandisk/Downloads/Incomplete:/incomplete"
+      - "/mnt/ssd-sandisk/Downloads/Watch:/watch"
+    environment:
+      - OPENVPN_PROVIDER=PIA
+      - OPENVPN_CONFIG=poland,germany,france,sweden
+      - OPENVPN_USERNAME=[USER]
+      - OPENVPN_PASSWORD=[PASSWORD]
+      - LOCAL_NETWORK=192.168.1.0/24
+      - CREATE_TUN_DEVICE=true
+      - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Warsaw
+      - TRANSMISSION_DOWNLOAD_DIR=/completed
+      - TRANSMISSION_HOME=/config/transmission-home
+      - TRANSMISSION_INCOMPLETE_DIR=/incomplete
+      - TRANSMISSION_WATCH_DIR=/watch
+      - TRANSMISSION_SCRIPT_TORRENT_ADDED_ENABLED=true
+      - TRANSMISSION_SCRIPT_TORRENT_ADDED_FILENAME=/config/transmission-home/scripts/transmission-add.sh
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+    ports:
+      - "9091:9091"
+    image: haugene/transmission-openvpn
 ```
 
 ### _Torrent Added Notification_ Script for Pushover
@@ -264,9 +264,8 @@ services:
       - TZ=Europe/Warsaw
     volumes:
       - /home/pe8er/docker/lidarr:/config
-      - /mnt/media/Piotrek/.config/lidarr/MediaCover:/config/MediaCover #because media covers don't fit on the SD card
-      - /mnt/media/Piotrek/Downloads/Completed:/downloads
-      - /mnt/media/Piotrek/Music:/music
+      - /mnt/ssd-sandisk/Downloads/Completed:/downloads
+      - /mnt/ssd-sandisk/Music:/music
     ports:
       - 8686:8686
     restart: unless-stopped
@@ -366,3 +365,31 @@ Next, go to Tailscale admin console to 1) approve routes and 2) add access rules
   ]
 }
 ```
+
+<!-- ## Mealie
+
+```yaml
+services:
+  mealie:
+    image: ghcr.io/mealie-recipes/mealie:v2.5.0 #
+    container_name: mealie
+    restart: always
+    ports:
+      - "9999:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+    volumes:
+      - mealie-data:/home/pe8er/docker/mealie
+    environment:
+      ALLOW_SIGNUP: "true"
+      PUID: 1000
+      PGID: 1000
+      TZ: Europe/Warsaw
+      BASE_URL: http://localhost:9999
+      OPENAI_API_KEY: [OPENAI_API_KEY]
+
+volumes:
+  mealie-data:
+``` -->
