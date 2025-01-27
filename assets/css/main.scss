@@ -30,7 +30,7 @@ $h-size-5: 1.03125em !default;
 $h-size-6: 1em !default;
 
 // Color Primitives
-$black: #303436;
+$black: hsl(240, 4%, 22%);
 $white: #e4e6e7;
 $red: #b12a59;
 
@@ -46,7 +46,7 @@ $dark-theme: true;
 
 @if $dark-theme {
   $background: $black;
-  $foreground: mix($background, $white, 25%);
+  $foreground: mix($background, $white, 20%);
   $url: $foreground;
   $accent: mix($red, $foreground, 80%);
   $link: #fff;
@@ -247,10 +247,16 @@ blockquote {
   &:after {
     display: none !important;
   }
+  li {
+    padding-left: 1em;
+  }
   @include breakpoint($large) {
     padding: 0 !important;
     box-shadow: none !important;
     border: none !important;
+    li {
+      padding-left: 0;
+    }
   }
 }
 
@@ -336,8 +342,12 @@ blockquote {
 
 .author__bio {
   display: none !important;
+  margin: 0 !important;
   @include breakpoint($large) {
     display: block !important;
+    p {
+      margin-bottom: 1em !important;
+    }
   }
 }
 
