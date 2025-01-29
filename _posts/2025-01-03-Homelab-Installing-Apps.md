@@ -369,31 +369,53 @@ Next, go to Tailscale admin console to 1) approve routes and 2) add access rules
 <!-- ## Mealie
 
 ```yaml
+version: "3.7"
 services:
   mealie:
-    image: ghcr.io/mealie-recipes/mealie:v2.5.0 #
+    image: ghcr.io/mealie-recipes/mealie:latest
     container_name: mealie
-    restart: always
     ports:
-      - "9999:9000"
+        - "9925:9000"
     deploy:
       resources:
         limits:
           memory: 1000M
+    depends_on:
+      - postgres
     volumes:
       - mealie-data:/home/pe8er/docker/mealie
     environment:
-      ALLOW_SIGNUP: "true"
-      PUID: 1000
-      PGID: 1000
-      TZ: Europe/Warsaw
-      BASE_URL: http://localhost:9999
-<<<<<<< HEAD
-      OPENAI_API_KEY: [OPENAI_API_KEY]
-=======
-      OPENAI_API_KEY: [YOUR API]
->>>>>>> 17ac227 (Remove OpenAI)
+    # Set Backend ENV Variables Here
+      - ALLOW_SIGNUP=true
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Warsaw
+      - MAX_WORKERS=1
+      - WEB_CONCURRENCY=1
+      - BASE_URL=http://192.168.1.132:9925
+
+    # Database Settings
+      - DB_ENGINE=postgres
+      - POSTGRES_USER=mealie
+      - POSTGRES_PASSWORD=[PASSWORD]
+      - POSTGRES_SERVER=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=mealie
+    restart: always
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    restart: always
+    volumes:
+      - ./mealie-pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: [PASSWORD]
+      POSTGRES_USER: mealie
 
 volumes:
   mealie-data:
+    driver: local
+  mealie-pgdata:
+    driver: local
+
 ``` -->
