@@ -197,6 +197,7 @@ blockquote {
   border-left: $border !important;
   padding-inline: 2em;
   margin-left: 2em;
+  padding-bottom: 0 !important;
   color: $lines-color;
 }
 
@@ -523,6 +524,11 @@ h2.archive__item-title:first-of-type {
   }
   .screenshot img {
     box-shadow: $box-shadow !important;
+  }
+  .image-left {
+    float: left;
+    margin: 0 2em 0 0;
+    max-width: 33%;
   }
 }
 
