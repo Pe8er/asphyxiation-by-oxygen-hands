@@ -1,5 +1,5 @@
 ---
-title: "Homelab: Moving Raspberry OS to a larger SD Card"
+title: "Moving Raspberry OS to a larger SD Card"
 date: 2025-01-22
 toc: true
 categories:

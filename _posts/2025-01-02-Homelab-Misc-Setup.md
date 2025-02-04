@@ -1,5 +1,5 @@
 ---
-title: "Homelab: Misc Setup"
+title: "Misc Setup"
 date: 2025-01-02
 # last_modified_at: 2025-01-09
 categories:

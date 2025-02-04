@@ -15,4 +15,5 @@ I'm using a somewhat ancient Raspberry Pi 3B+ as a home server and NAS. This ser
 3. [Plex Media Server]({% post_url 2025-01-04-Homelab-Plex %})
 4. [Calibre Web]({% post_url 2025-01-05-Homelab-Calibre %})
 5. [Reducing External Hard Drive Noise]({% post_url 2025-01-06-Homelab-HDD-Noise %})
-6. [Homelab: Moving Raspberry OS to a larger SD Card]({%- post_url 2025-01-22-Homelab-Moving-SD -%})
+6. [Moving Raspberry OS to a larger SD Card]({%- post_url 2025-01-22-Homelab-Moving-SD -%})
+7. [Automated Raspberry Pi Backup with rsync]({%- post_url 2025-02-01-Homelab-Backup -%})

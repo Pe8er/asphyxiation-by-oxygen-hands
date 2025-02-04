@@ -1,5 +1,5 @@
 ---
-title: "Homelab: Calibre Web"
+title: "Calibre Web"
 date: 2025-01-05
 categories:
   - Blog

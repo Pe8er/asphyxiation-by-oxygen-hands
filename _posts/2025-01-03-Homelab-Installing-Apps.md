@@ -1,5 +1,5 @@
 ---
-title: "Homelab: Installing Apps"
+title: "Installing Apps"
 date: 2025-01-03
 header:
   teaser: /assets/images/portainer.jpg
@@ -133,7 +133,7 @@ docker run hello-world
 
 If it worked, Terminal should show the following message:
 
-```txt
+```text
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ```

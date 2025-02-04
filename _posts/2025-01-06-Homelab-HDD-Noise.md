@@ -1,5 +1,5 @@
 ---
-title: "Homelab: Reducing External Hard Drive Noise"
+title: "Reducing External Hard Drive Noise"
 date: 2025-01-06
 categories:
   - Blog

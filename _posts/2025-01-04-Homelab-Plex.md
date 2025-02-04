@@ -1,5 +1,5 @@
 ---
-title: "Homelab: Plex Media Server"
+title: "Plex Media Server"
 date: 2025-01-04
 header:
   teaser: /assets/images/plex.jpg

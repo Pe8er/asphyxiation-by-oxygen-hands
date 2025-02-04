@@ -29,39 +29,56 @@ $h-size-4: 1.0625em !default;
 $h-size-5: 1.03125em !default;
 $h-size-6: 1em !default;
 
-// Color Primitives
-$black: hsl(240, 4%, 22%);
-$white: #e4e6e7;
-$red: #b12a59;
-
-// Light Theme Tokens
-$background: $white;
-$foreground: $black;
-$url: $foreground;
-$accent: mix($red, $background, 90%);
-$link: $black;
-$lines: mix($background, $foreground, 50%);
+$base99: #36363A;
+$base00: #282936;
+$base01: #3a3c4e;
+$base02: #4d4f68;
+$base03: #626483;
+$base04: #62d6e8;
+$base05: #e9e9f4;
+$base06: #f1f2f8;
+$base07: #f7f7fb;
+$base08: #ea51b2;
+$base09: #b45bcf;
+$base0a: #00f769;
+$base0b: #ebff87;
+$base0c: #a1efe4;
+$base0d: #62d6e8;
+$base0e: #b45bcf;
+$base0f: #00f769;
 
 $dark-theme: true;
 
+// Color Primitives
+$accent-01: $base08;
+$accent-02: $base0d;
+// $black: $base99;
+$black: mix($accent-02, #333, 5%);
+$white: $base05;
+
+// Light Theme Tokens
+$background: $white;
+$code-background: $black;
+$foreground: $black;
+$url: mix($foreground, #000, 75%);
+$shadow-color: mix($background, $foreground, 50%);
+
 @if $dark-theme {
   $background: $black;
-  $foreground: mix($background, $white, 20%);
-  $url: $foreground;
-  $accent: mix($red, $foreground, 80%);
-  $link: #fff;
-  $lines: mix($background, $foreground, 40%);
+  $foreground: $white;
+  $code-background: mix($background, #000, 75%);
+  $url: mix($foreground, #fff, 75%);
+  $shadow-color: mix($background, #000, 50%);
 }
 
-$base08: $accent;
 $background-color: $background !default;
 $text-color: $foreground !default;
-$primary-color: $accent !default;
+$primary-color: $accent-01 !default;
 $body-color: $background !default;
-$footer-background-color: $background !default;
-$link-color: $link !default;
-$lines-color: $lines !default;
-$box-shadow: 0 1em 2em 0 mix(#000, $black, 25%) !default;
+$link-color: $url !default;
+$lines-color: mix($background, $foreground, 80%) !default;
+$meta-color: mix($background, $foreground, 40%) !default;
+$box-shadow: 0 1em 2em 0 $shadow-color !default;
 $border: 1px solid $lines-color !default;
 
 @import "minimal-mistakes";
@@ -129,9 +146,13 @@ li.active a {
   color: $link-color !important;
 }
 
+.page__content a {
+  text-decoration: underline !important;
+}
+
 a:hover {
-  color: $accent !important;
-  text-decoration: none !important;
+  color: $primary-color !important;
+  // text-decoration: none !important;
 }
 
 a.disabled {
@@ -164,7 +185,7 @@ ul.author__urls li:last-of-type {
 
 li::marker {
   font-weight: 100;
-  color: $lines-color;
+  color: $meta-color;
 }
 ul li::marker {
   content: "+ ";
@@ -176,7 +197,7 @@ ul li::marker {
 }
 
 figcaption {
-  color: $lines-color !important;
+  color: $meta-color !important;
   display: block !important;
   margin: -1em 0 1em 0 !important;
 }
@@ -198,7 +219,7 @@ blockquote {
   padding-inline: 2em;
   margin-left: 2em;
   padding-bottom: 0 !important;
-  color: $lines-color;
+  color: $meta-color;
 }
 
 // End Misc ----------------------------- //
@@ -317,7 +338,12 @@ blockquote {
   border: none;
   position: fixed;
   display: none !important;
+  text-transform: uppercase;
   box-shadow: none !important;
+  a {
+    font-weight: 200;
+    text-decoration: none !important;
+  }
 
   @include breakpoint($large) {
     display: block !important;
@@ -325,13 +351,15 @@ blockquote {
 
   .nav__title {
     background-color: transparent !important;
-    color: $lines-color;
+    color: $meta-color;
     i {
       display: none;
     }
   }
   // Scrollspy marks toc items as .active when they are in focus
   .active a {
+    color: $background-color !important;
+    font-weight: 500 !important;
     @include yiq-contrasted($primary-color);
   }
 }
@@ -360,6 +388,7 @@ blockquote {
 #footer {
   margin: 0 !important;
   padding: 0 !important;
+  background-color: transparent;
 }
 #footer {
   border-top: $border !important;
@@ -388,11 +417,11 @@ code {
   font-size: inherit !important;
   line-height: inherit !important;
   color: $text-color !important;
-  background-color: mix($background-color, #000, 75%) !important;
+  background-color: $code-background !important;
 }
 
 .highlight .c {
-  color: $lines-color;
+  color: $meta-color;
   font-style: italic;
 }
 
@@ -526,9 +555,12 @@ h2.archive__item-title:first-of-type {
     box-shadow: $box-shadow !important;
   }
   .image-left {
-    float: left;
-    margin: 0 2em 0 0;
-    max-width: 33%;
+    margin: 0;
+    @include breakpoint($medium) {
+      margin: 0 2em 0 0;
+      max-width: 33%;
+      float: left;
+      }
   }
 }
 
@@ -536,15 +568,49 @@ h2.archive__item-title:first-of-type {
 #footer,
 .author__urls,
 .site-title {
-  color: $lines-color !important;
+  color: $meta-color !important;
   text-transform: uppercase;
   letter-spacing: 0.25em;
 }
 
 .page__meta {
   font-size: $type-size-6 !important;
-  padding-top: 1em;
-  border-top: $border !important;
+  p {
+    border-top: $border !important;
+  } 
+  p:last-of-type {
+    border-bottom: none !important;
+  }
+  a {
+    color: $meta-color !important;
+  }
+  .tags {
+    padding: 0.5em 0 !important;
+    display: block !important;
+  }
+}
+header > .page__meta {
+  margin-bottom: 0 !important;
+}
+
+footer .page__date {
+  padding-top: 0.5em !important;
+}
+
+header .tags {
+  display: inline !important;
+  border-bottom: $border !important;
+  margin-bottom: 0.5em !important;
+}
+
+.archive__item .tags {
+  display: none !important;
+}
+
+.archive__item-content > .page__meta {
+  padding: 0.5em 0 !important;
+  margin-bottom: 1em !important;
+  border-bottom: $border !important;
 }
 
 footer.page__meta {
@@ -562,14 +628,9 @@ footer.page__meta {
   padding-right: 0;
 }
 
-.page__meta p {
-  border-bottom: $border !important;
-  padding: 0.5em 0 !important;
-}
-
-.page__meta p:last-of-type {
-  border-bottom: none !important;
-}
+.sep {
+   display: inline !important;
+ }
 
 .pagination--pager {
   border: $border !important;
@@ -592,7 +653,7 @@ footer.page__meta {
 .notice {
   background-color: $background-color !important;
   border: $border !important;
-  color: $lines-color !important;
+  color: $meta-color !important;
   font-size: inherit !important;
   box-shadow: none;
 }
