@@ -28,13 +28,13 @@ Anyway, here's the script. It stops all docker containers, mounts the external d
 [[ $EUID -ne 0 ]] && { echo "This script must be run as root."; exit 1; }
 
 # Paths
-backupDrive="/mnt/media"
-backupDriveLocation="/dev/sda2"
-backupPath="$backupDrive/Backups"
+backupDrive="/dev/sda2"
+backupDriveMount="/mnt/media"
+backupPath="$backupDriveMount/Backups"
 
 # Define backup sources and destinations
 declare -a backups=(
-  "/boot/ sd-boot"
+  "/boot/ sd-boot" # This means: backup /boot/ to $backupPath/sd-boot
   "/ sd-root"
   "/mnt/ssd-sandisk/ ssd-sandisk"
 )
@@ -43,10 +43,10 @@ declare -a backups=(
 export LC_ALL=C
 
 # Pushover credentials
-tokenUser="tokenUser"
-tokenApp="tokenApp"
+tokenUser="Your Pushover User Token"
+tokenApp="Your Pushover App Token"
 
-# Log file stuff
+# Log file location
 logFile="/var/log/backup.log"
 
 # Check if log file exists
@@ -71,9 +71,10 @@ else
 fi
 
 # Check for 'test' argument to enable dry run
-[[ "$1" == "test" ]] && dryRunFlag="--dry-run -P" || dryRunFlag=""
+dryRunFlag=""
+[[ "$1" == "test" ]] && dryRunFlag="--dry-run -P"
 
-# Logging function
+# Log messages
 logMessage() {
   local message="$1"
   echo "$(date '+%Y/%m/%d %H:%M:%S') - $message" | tee -a "$logFile"
@@ -82,7 +83,7 @@ logMessage() {
 # Initialize backup report for Pushover notification
 backupReport=""
 
-# Function to send Pushover notifications
+# Send Pushover notifications
 sendNotification() {
   local title="$1"
   local message="$2"
@@ -94,12 +95,15 @@ sendNotification() {
     https://api.pushover.net/1/messages.json >/dev/null
 }
 
-# Function to perform rsync backup
+
+# Perform rsync backup
 backup() {
   local source="$1"
   local description="$2"
   local destination="$backupPath/$description/"
-  [ -f "$description-exclude.txt" ] && options="--exclude-from=$description-exclude.txt" || local options=""
+  local options=""
+
+  [ -f "$description-exclude.txt" ] && options="--exclude-from=$description-exclude.txt"
   
   logMessage "Starting backup of ${description}: ${source} -> ${destination}"
   rsyncOutput=$(rsync -avzh $dryRunFlag --delete --stats ${options:+"$options"} "$source" "$destination" 2>&1)
@@ -115,23 +119,23 @@ backup() {
   fi
 }
 
-# Unmount with error handling
+# Unmount backup hard drive
 unmountMedia() {
-  if ! sudo umount $backupDrive; then
-    logMessage "$backupDrive is busy. Attempting lazy unmount."
-    if ! sudo umount -l $backupDrive; then
-      sendNotification "Pi Backup ❌" "Failed to unmount $backupDrive."
-      logMessage "Lazy unmount of $backupDrive failed."
+  if ! sudo umount $backupDriveMount; then
+    logMessage "$backupDriveMount is busy. Attempting lazy unmount."
+    if ! sudo umount -l $backupDriveMount; then
+      sendNotification "Pi Backup ❌" "Failed to unmount $backupDriveMount."
+      logMessage "Lazy unmount of $backupDriveMount failed."
       exit 1
     else
-      logMessage "Lazy unmount of $backupDrive succeeded."
+      logMessage "Lazy unmount of $backupDriveMount succeeded."
     fi
   else
-    logMessage "Unmounted $backupDrive."
+    logMessage "Unmounted $backupDriveMount."
   fi
 }
 
-# END FUNCTIONS ############################################
+#############################################
 
 if [[ "$1" != "test" ]]; then
   # Stop all docker containers
@@ -139,14 +143,14 @@ if [[ "$1" != "test" ]]; then
   docker stop $(docker ps -q)
 fi
 
-# Mount the backup hard drive
-if ! mountpoint -q $backupDrive; then
-  if ! sudo mount $backupDriveLocation $backupDrive; then
-    sendNotification "Pi Backup ❌" "Failed to mount $backupDriveLocation at $backupDrive."
+# Mount backup hard drive
+if ! mountpoint -q $backupDriveMount; then
+  if ! sudo mount $backupDrive $backupDriveMount; then
+    sendNotification "Pi Backup ❌" "Failed to mount $backupDrive at $backupDriveMount."
     exit 1
   fi
 else
-  logMessage "$backupDrive is already mounted."
+  logMessage "$backupDriveMount is already mounted."
 fi
 
 # Ensure the backup directory exists
