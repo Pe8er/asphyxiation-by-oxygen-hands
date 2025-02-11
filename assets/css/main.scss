@@ -1,6 +1,5 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
-search: false
 ---
 
 @charset "utf-8";
@@ -52,7 +51,6 @@ $dark-theme: true;
 // Color Primitives
 $accent-01: $base08;
 $accent-02: $base0d;
-// $black: $base99;
 $black: mix($accent-02, #333, 5%);
 $white: $base05;
 

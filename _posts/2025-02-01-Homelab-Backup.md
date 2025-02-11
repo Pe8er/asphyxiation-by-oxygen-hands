@@ -19,7 +19,7 @@ I asked ChatGPT to write the backup script for me and I feel empty. It was just 
 
 And after that, the universe heard my request for a challenge and for two straight days, I wasn't able to figure out why `rsync` wouldn't accept my exclude lists. I finally figured out a solution but I have _no idea_ why the original approach (using an array with `--exclude=` option) didn't work.
 
-Anyway, here's the script. It stops all docker containers, mounts the external drive, performs 3 backup operations, restarts docker containers, unmounts the drive and sends a report to my phone. It even has a dry run mode -- simply run sudo backup.sh test for a test run with more logging and some actions (like unmounting) disabled.
+Anyway, here's the script. It stops all docker containers, mounts the external drive, performs 2 backup operations, restarts docker containers, unmounts the drive and sends a report to my phone. It even has a dry run mode -- simply run `sudo backup.sh test` for a test run with more logging and some actions (like unmounting) disabled.
 
 ```bash
 #!/bin/bash
@@ -31,11 +31,11 @@ Anyway, here's the script. It stops all docker containers, mounts the external d
 backupDrive="/dev/sda2"
 backupDriveMount="/mnt/media"
 backupPath="$backupDriveMount/Backups"
+scriptPath="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Define backup sources and destinations
 declare -a backups=(
-  "/boot/ sd-boot" # This means: backup /boot/ to $backupPath/sd-boot
-  "/ sd-root"
+  "/home/ home"
   "/mnt/ssd-sandisk/ ssd-sandisk"
 )
 
@@ -43,8 +43,8 @@ declare -a backups=(
 export LC_ALL=C
 
 # Pushover credentials
-tokenUser="Your Pushover User Token"
-tokenApp="Your Pushover App Token"
+tokenUser="u22kk8j5cyb3a9ji7s5yh1mi7hk12n"
+tokenApp="a7f44m51kzzgoa4mwtn77q8zb39n3i"
 
 # Log file location
 logFile="/var/log/backup.log"
@@ -103,7 +103,7 @@ backup() {
   local destination="$backupPath/$description/"
   local options=""
 
-  [ -f "$description-exclude.txt" ] && options="--exclude-from=$description-exclude.txt"
+  [ -f "$scriptPath/$description-exclude.txt" ] && options="--exclude-from=$scriptPath/$description-exclude.txt"
   
   logMessage "Starting backup of ${description}: ${source} -> ${destination}"
   rsyncOutput=$(rsync -avzh $dryRunFlag --delete --stats ${options:+"$options"} "$source" "$destination" 2>&1)
