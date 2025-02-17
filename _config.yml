@@ -66,7 +66,6 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
-  - jekyll-archives
 
 author:
   name   : "Asphyxiation by&nbsp;Oxygen&nbsp;Hands"
@@ -106,40 +105,14 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: false
-  # _portfolio
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: false
-      share: false
+      author_profile: true
 
-category_archive:
-  type: jekyll-archives
-  path: /categories/
+# category_archive:
+#   type: liquid
+#   path: /categories/
 tag_archive:
-  type: jekyll-archives
+  type: liquid
   path: /tags/
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-    - collections
-  layouts:
-    category: archive-taxonomy
-    tag: archive-taxonomy
-    collection: archive-taxonomy
-  permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
-    collection: /:collection/:name/
-
-collections:
-  portfolio:
-    output: true
-    permalink: /:collection/:name/
 
 compress_html:
   clippings: all
