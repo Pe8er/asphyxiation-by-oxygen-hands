@@ -1,3 +1,11 @@
 main:
-  - title: "Portfolio →"
-    url: https://pgajos.com
+  - title: "UX"
+    url: /ux/
+  - title: "Brand"
+    url: /brand/
+  - title: "Motion"
+    url: /motion/
+  - title: "Words"
+    url: /blog/
+  - title: "Contact"
+    url: mailto:hello@pgajos.com
