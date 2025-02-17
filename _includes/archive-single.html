@@ -21,7 +21,7 @@
         {% endif %}
       </h1>
       {% include page__meta.html %}
-      {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html }}</p>{% endif %}
+      {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html }}<a class="continue" href="{{ post.url | relative_url }}" rel="permalink">→</a></p>{% endif %}
     </div>
     {% if teaser %}
     <div class="archive__item-teaser">
