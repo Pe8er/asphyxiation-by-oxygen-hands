@@ -400,6 +400,8 @@ ul.social-icons {
   li::before {
     display: none !important;
   }
+}
+.page__footer-follow {
   li:first-of-type {
   display: none !important;
   }
@@ -554,6 +556,14 @@ h2.archive__item-title:first-of-type {
       margin: 0 2em 0 0;
       max-width: 33%;
       float: left;
+      }
+    }
+  .image-right {
+    margin: 0;
+    @include breakpoint($medium) {
+      margin: 0 0 0 2em;
+      max-width: 33%;
+      float: right;
       }
   }
 }

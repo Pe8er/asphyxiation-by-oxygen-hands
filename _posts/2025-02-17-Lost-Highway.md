@@ -16,9 +16,9 @@ David Lynch's death inspired me to rewatch my favorite movie of his: *[Lost High
 **SPOILER ALERT!** This post is not an attempt to explain *Lost Highway*, but I'm not going out of my way to avoid spoilers or my interpretations of characters and events.
 {: .notice}
 
-I had a ton of fun with the story and characters, and I think I figured out that the chronology is reversed.
+I had a ton of fun with the story and characters, and I think I figured out that the chronology is reversed. It was such a pleasure to reconstruc the movie as I was watching it, and revisit / update my memories at the same time.
 
-My jaw dropped so hard that I proceeded to take 246 screenshots during the movie. I was floored by the sparse, elegant and meaningful color palette: the picture drowns in blackness, intertwined with shades of brown and gold. And the cinematography is apex Lynch: composition is always perfect in this unforced, almost spontaneous, intuitive and organic way.
+I couldn't get enough of the visuals. My jaw dropped so hard that I proceeded to take 246 screenshots during the movie. I was floored by the sparse, elegant and meaningful color palette: the picture drowns in blackness, intertwined with shades of brown and gold. And the cinematography is apex Lynch: composition is always perfect in this unforced, almost spontaneous, intuitive and organic way.
 
 [![Lost Highway Color Palette](/assets/images/lost-highway/lost-highway-colors.jpg)](/assets/images/lost-highway/lost-highway-colors.jpg)
 
@@ -36,9 +36,9 @@ The sarcastic, direct sense of humor reminds me of the almost cheerful moments i
 
 I don't remember noticing the ironic side of the main theme 20 years ago. Let's call it *relationship complications*: uncertainty, obsession, jealousy, all stemming from an awkwardly presented sense of masculinity. I love how Lynch plays with it all, perfectly walking the line between irony and mystery. After all, isn't it how paranoia works? At first it's meaningless, and the next moment it turns into a big deal, seemingly out of nowhere.
 
-Duality or juxtaposition seems to be a mechanism prevalent across the movie: light and darkness, humor and dread, simplicity and mystery, man vs woman, good vs evil. It's all very nuanced though, for example Patricia Arquette's character(s) is both innocent and helpless, and at the same time is the main object of desire and thus the driving force behind most of the movies' events.
+Duality or juxtaposition seems to be a mechanism prevalent across the movie: light and darkness, humor and dread, simplicity and mystery, man versus woman, good vs evil. It's all very nuanced though, for example Patricia Arquette's character(s) is both innocent and helpless, and at the same time is the main object of desire and thus the driving force behind most of the movies' events.
 
-I think she is the closest to The Mystery Man in terms of power, motivation and influence, but she's definitely not evil. She is *complete*, and in control. And even though they're both probably coming from *The Black Lodge*, it's such a fantastic idea that she never meets The Mystery Man on-screen.
+I think she is the closest to The Mystery Man in terms of power, motivation and influence, but she's definitely not evil. She is *complete*, and in control. And even though they're both probably from *The Black Lodge* (at least I like to think so), it's such a fantastic idea that she never meets The Mystery Man on-screen.
 
 I dig her character a lot more this time around.
 
@@ -46,7 +46,7 @@ I dig her character a lot more this time around.
 
 <figcaption>"You will never have me".</figcaption>
 
-I remember thinking that Lynch made the dialogue sound awkward and stiff to serve the overall surreal atmosphere… several years and complicated relationships later, I don't see it that way anymore. This time around, dialogue felt much more closer to how it can be in real life when things are fucked up, cold and distant. But still, it is served with a pinch of grotesque comedy, it's so exaggerated and silly if you look at it from a distance.
+I remember thinking that Lynch made the dialogue sound awkward and stiff to serve the overall surreal atmosphere… several years and complicated relationships later, I don't see it that way anymore. This time around, dialogue felt much closer to how it can be in real life when things are fucked up, cold and distant. But still, it is served with a pinch of grotesque comedy, it's so exaggerated and silly if you look at it from a distance.
 
 I can't believe this: Lost Highway is a pretty funny movie. And still my favorite Lynch.
 
