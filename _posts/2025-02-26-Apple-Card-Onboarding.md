@@ -2,7 +2,7 @@
 title: "Apple Card Onboarding UX: a Review"
 date: 2025-02-26
 header:
-  teaser: /assets/images/apple-card/teaser.jpg
+  teaser: /assets/images/apple-card/teaser@2x.jpg
 categories:
   - Blog
 tags:

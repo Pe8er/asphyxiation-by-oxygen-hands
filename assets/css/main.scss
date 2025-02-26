@@ -78,6 +78,7 @@ $lines-color: mix($background, $foreground, 80%) !default;
 $meta-color: mix($background, $foreground, 40%) !default;
 $box-shadow: 0 1em 2em 0 $shadow-color !default;
 $border: 1px solid $lines-color !default;
+$global-transition: none !default;
 
 @import "minimal-mistakes";
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
