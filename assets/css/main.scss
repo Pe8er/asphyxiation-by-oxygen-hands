@@ -142,15 +142,17 @@ li.active a {
   position: relative !important;
   text-decoration: none;
   color: $link-color !important;
+  -webkit-transition: none;
+  transition: none;
 }
 
 .page__content a {
   text-decoration: underline !important;
 }
 
-a:hover {
+a:hover,  .tags a:hover {
   color: $primary-color !important;
-  // text-decoration: none !important;
+  text-decoration-thickness: 0.25em !important;
 }
 
 a.disabled {
@@ -196,7 +198,14 @@ ul li::marker {
 figcaption {
   color: $meta-color !important;
   display: block !important;
-  margin: -1em 0 2em 0 !important;
+  text-align: center;
+  margin-top: -1em !important;
+  margin-bottom: 2em;
+}
+
+figure > figcaption {
+  margin-top: 1em !important;
+  margin-bottom: 0 !important;
 }
 
 tr {
@@ -472,24 +481,27 @@ h2.archive__item-title:first-of-type {
 .archive__item-teaser {
   width: 100%;
   overflow: hidden;
-  display: flex;
   order: 1;
-
   @include breakpoint($medium) {
+    display: flex;
     width: 8em;
     order: 2;
   }
-
-  img {
+  a img {
     border: $border !important;
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
+    max-height: 15em;
     width: 100% !important; /* Make the image fill the container's width */
     height: 100% !important; /* Stretch the image to fill the container's height */
-    object-fit: cover; /* Crop the image without distorting it */
+    object-fit: cover !important; /* Crop the image without distorting it */
+    object-position: top !important;
     &:hover {
       -webkit-filter: none;
       filter: none;
+    }
+    @include breakpoint($medium) {
+      max-height: inherit;
     }
   }
 }
@@ -544,8 +556,16 @@ h2.archive__item-title:first-of-type {
   h2 {
     border-bottom: $border !important;
   }
-  p {
-    margin: 0 0 2em;
+  p, figure {
+    margin: 0 0 2em !important;
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+    max-height: 30em !important;
+    @include breakpoint($medium) {
+      max-height: inherit !important;
+    }
   }
   .screenshot img {
     box-shadow: $box-shadow !important;
@@ -553,7 +573,7 @@ h2.archive__item-title:first-of-type {
   .image-left {
     margin: 0;
     @include breakpoint($medium) {
-      margin: 0 2em 0 0;
+      margin: 0 2em 1em 0 !important;
       max-width: 33%;
       float: left;
       }

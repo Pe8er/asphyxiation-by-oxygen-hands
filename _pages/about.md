@@ -1,8 +1,7 @@
 ---
 permalink: /about/
-title: "Hi there, my name is Piotr [ pee oh-der ]"
+title: "Hi there, my name is Piotr. *[ pee oh-der ]*"
 ---
-
 Born and bred in a small town in south-western Poland, I earned my second, dark blue passport after 10 years of sweat in the deep and ruthless mines of Silicon Valley.
 
 [![Kobe and Piotr](/assets/images/kobeandpiotr.jpg)](/assets/images/kobeandpiotr.jpg)
