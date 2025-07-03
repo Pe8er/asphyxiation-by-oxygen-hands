@@ -92,6 +92,9 @@ $global-transition: none !default;
 body {
   line-height: 1.7;
   letter-spacing: -0.05em !important;
+  background-color: $background;
+  background-image: url(https://grainy-gradients.vercel.app/noise.svg);
+  background-blend-mode: overlay;
 }
 
 html {
@@ -426,6 +429,8 @@ code {
   line-height: inherit !important;
   color: $text-color !important;
   background-color: $code-background !important;
+  background-image: url(https://grainy-gradients.vercel.app/noise.svg);
+  background-blend-mode: overlay;
 }
 
 .highlight .c {
@@ -682,7 +687,9 @@ footer.page__meta {
 }
 
 .notice {
-  background-color: $background-color !important;
+  background-color: $code-background !important;
+  background-image: url(https://grainy-gradients.vercel.app/noise.svg);
+  background-blend-mode: overlay;
   border: $border !important;
   color: $meta-color !important;
   font-size: inherit !important;
