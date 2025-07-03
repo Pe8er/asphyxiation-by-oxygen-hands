@@ -5,7 +5,7 @@
 @charset "utf-8";
 
 // Typefaces
-$serif: "JetBrains Mono", Georgia, Times, serif;
+$serif: "Old Standard TT", Georgia, Times, serif;
 $sans-serif: "JetBrains Mono", -apple-system, BlinkMacSystemFont, "Roboto",
   "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
 $monospace: "JetBrains Mono", Monaco, Consolas, "Lucida Console", monospace;
@@ -21,11 +21,11 @@ $type-size-7: 0.6em !default;
 $type-size-8: 0.5em !default;
 
 // Headline Scale
-$h-size-1: 2em !default;
-$h-size-2: 1.75em !default;
-$h-size-3: 1.5em !default;
-$h-size-4: 1.0625em !default;
-$h-size-5: 1.03125em !default;
+$h-size-1: 3em !default;
+$h-size-2: 2.5em !default;
+$h-size-3: 2em !default;
+$h-size-4: 1.5em !default;
+$h-size-5: 1.25em !default;
 $h-size-6: 1em !default;
 
 $base99: #36363A;
@@ -49,9 +49,9 @@ $base0f: #00f769;
 $dark-theme: true;
 
 // Color Primitives
-$accent-01: $base08;
-$accent-02: $base0d;
-$black: mix($accent-02, #333, 5%);
+$accent-01: $base0b;
+$accent-02: $base0a;
+$black: mix($accent-02, #222, 1%);
 $white: $base05;
 
 // Light Theme Tokens
@@ -71,7 +71,6 @@ $shadow-color: mix($background, $foreground, 50%);
 
 $background-color: $background !default;
 $text-color: $foreground !default;
-$primary-color: $accent-01 !default;
 $body-color: $background !default;
 $link-color: $url !default;
 $lines-color: mix($background, $foreground, 80%) !default;
@@ -117,16 +116,16 @@ h3,
 h4,
 h5,
 h6 {
-  text-transform: uppercase;
   font-weight: 400 !important;
   line-height: 1;
+  font-family: $serif !important;
 }
 
 h1,
 h1 a,
 h2,
 h3 {
-  letter-spacing: -0.09em !important;
+  // letter-spacing: -0.09em !important;
 }
 
 img {
@@ -152,8 +151,8 @@ li.active a {
 }
 
 a:hover,  .tags a:hover {
-  color: $primary-color !important;
-  text-decoration-thickness: 0.25em !important;
+  color: $accent-01 !important;
+  // text-decoration-thickness: 0.25em !important;
 }
 
 a.disabled {
@@ -367,7 +366,7 @@ blockquote {
   .active a {
     color: $background-color !important;
     font-weight: 500 !important;
-    @include yiq-contrasted($primary-color);
+    @include yiq-contrasted($accent-01);
   }
 }
 
@@ -642,7 +641,7 @@ header .tags {
 }
 
 a.continue {
-  color: $primary-color !important;
+  color: $accent-01 !important;
 }
 
 footer.page__meta {

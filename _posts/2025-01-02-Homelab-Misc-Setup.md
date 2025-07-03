@@ -97,7 +97,7 @@ sudo umount /dev/sdaN
 ```
 
 ```bash
-systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 
 ```bash
@@ -122,7 +122,7 @@ find /mnt/media -type d -exec chmod 755 {} \;
 find /mnt/media -type f -exec chmod 644 {} \;
 ```
 
-## Samba Share for Easy File Management
+## Samba Shares for Easy File Management
 
 Install Samba:
 

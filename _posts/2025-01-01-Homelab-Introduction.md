@@ -17,3 +17,4 @@ I'm using a somewhat ancient Raspberry Pi 3B+ as a home server and NAS. This ser
 5. [Reducing External Hard Drive Noise]({% post_url 2025-01-06-Homelab-HDD-Noise %})
 6. [Moving Raspberry OS to a larger SD Card]({%- post_url 2025-01-22-Homelab-Moving-SD -%})
 7. [Automated Raspberry Pi Backup with rsync]({%- post_url 2025-02-01-Homelab-Backup -%})
+8. [New Server: GMKtec NucBox G3 Setup]({%- post_url 2025-03-28-G3 -%})

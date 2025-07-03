@@ -14,7 +14,7 @@ toc: true
 ![Portainer screenshot](/assets/images/portainer.jpg)
 {: .screenshot}
 
-I run a bunch of apps on my Pi. Most of them via Docker.
+I run a bunch of apps on my server. Most of them via Docker.
 
 <!--more-->
 
@@ -65,10 +65,10 @@ And then `CTRL` + `C` to kill it. Edit configuration file:
 nano ~/.local/state/syncthing/config.xml
 ```
 
-Look for the following line (`CTRL` + `W`) and replace with the ([preferrably static](http://localhost:4000/Homelab-Misc-Setup/#define-static-ip)) IP of your Pi:
+Look for the following line (`CTRL` + `W`) and replace with the ([preferrably static](http://localhost:4000/Homelab-Misc-Setup/#define-static-ip)) IP of your server:
 
 ```conf
-<address>192.168.1.132:8384</address>
+<address>192.168.1.199:8384</address>
 ```
 
 Set up a service so syncthing launches on reboot:
@@ -86,14 +86,14 @@ sudo systemctl start syncthing@$USER
 Syncthing is available:
 
 ```conf
-http://[PI IP]:8384
+http://[SERVER IP]:8384
 ```
 
 ## Docker
 
 Docker is a fantastic solution to easily run lots of software in a quick, safe and replicable way.
 
-Make sure Pi is up to date:
+Make sure server is up to date:
 
 ```bash
 sudo apt update
@@ -155,7 +155,7 @@ sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/do
 Portainer should be available:
 
 ```conf
-http://[PI IP]:9000
+http://[SERVER IP]:9000
 ```
 
 ## Transmission
@@ -169,14 +169,11 @@ services:
     cap_add:
       - NET_ADMIN
     volumes:
-      - "/mnt/ssd-sandisk/Downloads:/data"
+      - "/home/pe8er:/data"
       - "/home/pe8er/docker/transmission:/config"
-      - "/mnt/ssd-sandisk/Downloads/Completed:/completed"
-      - "/mnt/ssd-sandisk/Downloads/Incomplete:/incomplete"
-      - "/mnt/ssd-sandisk/Downloads/Watch:/watch"
     environment:
       - OPENVPN_PROVIDER=PIA
-      - OPENVPN_CONFIG=poland,germany,france,sweden
+      - OPENVPN_CONFIG=poland
       - OPENVPN_USERNAME=[USER]
       - OPENVPN_PASSWORD=[PASSWORD]
       - LOCAL_NETWORK=192.168.1.0/24
@@ -185,12 +182,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Warsaw
-      - TRANSMISSION_DOWNLOAD_DIR=/completed
       - TRANSMISSION_HOME=/config/transmission-home
-      - TRANSMISSION_INCOMPLETE_DIR=/incomplete
-      - TRANSMISSION_WATCH_DIR=/watch
+      - TRANSMISSION_DOWNLOAD_DIR=/data/Downloads/Seeding
+      - TRANSMISSION_INCOMPLETE_DIR=/data/Downloads/Incomplete
+      - TRANSMISSION_WATCH_DIR=/data/Downloads/Watch
       - TRANSMISSION_SCRIPT_TORRENT_ADDED_ENABLED=true
       - TRANSMISSION_SCRIPT_TORRENT_ADDED_FILENAME=/config/transmission-home/scripts/transmission-add.sh
+      - TRANSMISSION_WEB_UI=transmission-web-control
     logging:
       driver: json-file
       options:
@@ -227,48 +225,62 @@ MESSAGE="$TR_TORRENT_NAME added to Transmission.";
 curl -s --form-string "token=$TOKEN_APP" --form-string "user=$TOKEN_USER" --form-string "timestamp=$TIMESTAMP" --form-string "priority=$PRIORITY" --form-string "sound=$SOUND" --form-string "title=$TITLE" --form-string "message=$MESSAGE" https://api.pushover.net/1/messages.json
 ```
 
-## prowlarr
+### _Torrent Completed_ Script for Pushover
 
-Image is grabbed from [linuxserver/prowlarr](https://docs.linuxserver.io/images/docker-prowlarr/#docker-cli-click-here-for-more-info).
+I set this up because I want music downloads to be copied to another folder for Picard processing, without touching the original seeded files.
 
-```yaml
----
-services:
-  prowlarr:
-    image: lscr.io/linuxserver/prowlarr:latest
-    container_name: prowlarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Warsaw
-    volumes:
-      - /home/pe8er/docker/prowlarr:/config
-    ports:
-      - 9696:9696
-    restart: unless-stopped
-```
+```bash
+#!/bin/bash
 
-## lidarr
+# TR_APP_VERSION: The version number of the current TR
+# TR_TIME_LOCALTIME: Current time
+# TR_TORRENT_DIR: The directory where the current completed seed is located
+# TR_TORRENT_HASH: hashThe value of the current seed
+# TR_TORRENT_ID: Current seed ID
+# TR_TORRENT_NAME: Current seed name
 
-Image is from [linuxserver/docker-lidarr](https://github.com/linuxserver/docker-lidarr).
+# Set log file path
+LOG_FILE="/data/Completed/torrent_post_process.log"
+DESTINATION="/data/Completed"
 
-```yaml
----
-services:
-  lidarr:
-    image: lscr.io/linuxserver/lidarr:latest
-    container_name: lidarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Warsaw
-    volumes:
-      - /home/pe8er/docker/lidarr:/config
-      - /mnt/ssd-sandisk/Downloads/Completed:/downloads
-      - /mnt/ssd-sandisk/Music:/music
-    ports:
-      - 8686:8686
-    restart: unless-stopped
+touch "$LOG_FILE"
+chmod 644 "$LOG_FILE"
+
+echo "[$(date)] Log triggered." >> "$LOG_FILE"
+echo "[$(date)] TR_TORRENT_NAME: $TR_TORRENT_NAME" >> "$LOG_FILE"
+echo "[$(date)] TR_TORRENT_DIR: $TR_TORRENT_DIR" >> "$LOG_FILE"
+
+# # Ensure the log file exists and is writable
+# touch "$LOG_FILE"
+# chmod 644 "$LOG_FILE"
+
+
+# Log start
+echo "[$(date)] Starting post-process for: $TR_TORRENT_NAME" >> "$LOG_FILE"
+
+# Perform copy and log output
+cp -a "$TR_TORRENT_DIR/$TR_TORRENT_NAME" "$DESTINATION/" >> "$LOG_FILE" 2>&1
+
+# Log status
+if [ $? -eq 0 ]; then
+    echo "[$(date)] ✅ Copy successful: $TR_TORRENT_NAME" >> "$LOG_FILE"
+else
+    echo "[$(date)] ❌ Copy failed: $TR_TORRENT_NAME" >> "$LOG_FILE"
+fi
+
+TOKEN_USER="[TOKEN_USER]";
+TOKEN_APP="[TOKEN_APP]";
+
+# Message for the notification.
+MESSAGE="$TR_TORRENT_NAME downloaded & copied.";
+
+PRIORITY=0;
+SOUND="tugboat";
+TITLE="☠️ ✅ Torrent download completed";
+
+TIMESTAMP=$(date +%s);
+
+curl -s --form-string "token=$TOKEN_APP" --form-string "user=$TOKEN_USER" --form-string "timestamp=$TIMESTAMP" --form-string "priority=$PRIORITY" --form-string "sound=$SOUND" --form-string "title=$TITLE" --form-string "message=$MESSAGE" https://api.pushover.net/1/messages.json
 ```
 
 ## Magic of Remote Access: Tailscale
@@ -317,7 +329,7 @@ Start Tailscale:
 sudo tailscale up
 ```
 
-In order for other Tailscale clients to be able to access my LAN, Pi needs to be set up as _subnet router_. The following is from [Tailscale documentation](https://tailscale.com/kb/1019/subnets). First, enable port forwarding:
+In order for other Tailscale clients to be able to access my LAN, server needs to be set up as _subnet router_. The following is from [Tailscale documentation](https://tailscale.com/kb/1019/subnets). First, enable port forwarding:
 
 ```bash
 echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf
@@ -365,57 +377,3 @@ Next, go to Tailscale admin console to 1) approve routes and 2) add access rules
   ]
 }
 ```
-
-<!-- ## Mealie
-
-```yaml
-version: "3.7"
-services:
-  mealie:
-    image: ghcr.io/mealie-recipes/mealie:latest
-    container_name: mealie
-    ports:
-        - "9925:9000"
-    deploy:
-      resources:
-        limits:
-          memory: 1000M
-    depends_on:
-      - postgres
-    volumes:
-      - mealie-data:/home/pe8er/docker/mealie
-    environment:
-    # Set Backend ENV Variables Here
-      - ALLOW_SIGNUP=true
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Warsaw
-      - MAX_WORKERS=1
-      - WEB_CONCURRENCY=1
-      - BASE_URL=http://192.168.1.132:9925
-
-    # Database Settings
-      - DB_ENGINE=postgres
-      - POSTGRES_USER=mealie
-      - POSTGRES_PASSWORD=[PASSWORD]
-      - POSTGRES_SERVER=postgres
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=mealie
-    restart: always
-  postgres:
-    container_name: postgres
-    image: postgres:15
-    restart: always
-    volumes:
-      - ./mealie-pgdata:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: [PASSWORD]
-      POSTGRES_USER: mealie
-
-volumes:
-  mealie-data:
-    driver: local
-  mealie-pgdata:
-    driver: local
-
-``` -->
