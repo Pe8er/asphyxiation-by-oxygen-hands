@@ -196,6 +196,7 @@ ul li::marker {
 .current {
   background-color: transparent !important;
   border: $border !important;
+  color: $accent-01 !important;
 }
 
 figcaption {
