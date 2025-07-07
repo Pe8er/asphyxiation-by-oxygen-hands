@@ -1,5 +1,5 @@
 ---
-title: "Unguibus et Rostro"
+title: Unguibus et Rostro
 date: 2015-02-19
 last_modified_at: 2025-01-09
 header:
