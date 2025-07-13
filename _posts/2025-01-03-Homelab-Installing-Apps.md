@@ -6,20 +6,19 @@ header:
 # last_modified_at: 2025-01-09
 categories:
   - Blog
-tags:
-  - Homelab
+tags: [Homelab]
 toc: true
 ---
 
 ![Portainer screenshot](/assets/images/portainer.jpg)
-{: .screenshot}
+{:.screenshot}
 
 I run a bunch of apps on my server. Most of them via Docker.
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
-{: .notice}
+This post is a part of my *Homelab Series*. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
+{:.notice}
 
 ## Syncthing
 
@@ -198,14 +197,14 @@ services:
     image: haugene/transmission-openvpn
 ```
 
-### _Torrent Added Notification_ Script for Pushover
+### *Torrent Added Notification* Script for ~~Pushover~~ ntfy.sh
 
 ```bash
 #!/bin/bash
 
-# Send push notification to pushover device when a torrent is complete.
+# Send push notification to Pushover device when a torrent added to Transmission.
+
 # Available environment variables from Transmission (as of v2.83) are:
-#
 # TR_APP_VERSION
 # TR_TORRENT_DIR
 # TR_TORRENT_HASH
@@ -213,19 +212,20 @@ services:
 # TR_TIME_LOCALTIME
 # TR_TORRENT_NAME
 
-# Pushover Token and User Key
-TOKEN_APP="[TOKEN_APP]";
-TOKEN_USER="[TOKEN_USER]";
-TIMESTAMP=$(date +%s);
-PRIORITY=0;
-SOUND="tugboat";
-TITLE="☠️ Torrent added";
+# Message for the notification.
 MESSAGE="$TR_TORRENT_NAME added to Transmission.";
 
-curl -s --form-string "token=$TOKEN_APP" --form-string "user=$TOKEN_USER" --form-string "timestamp=$TIMESTAMP" --form-string "priority=$PRIORITY" --form-string "sound=$SOUND" --form-string "title=$TITLE" --form-string "message=$MESSAGE" https://api.pushover.net/1/messages.json
+TITLE="☠️ ⬇️ Torrent added";
+
+NTFYSERVER="192.168.1.199:8787/transmission"
+curl \
+  -H "$TITLE" \
+  -H "Tags: skull" \
+  -d "$MESSAGE" \
+  $NTFYSERVER
 ```
 
-### _Torrent Completed_ Script for Pushover
+### *Torrent Completed* Script for ~~Pushover~~ ntfy.sh
 
 I set this up because I want music downloads to be copied to another folder for Picard processing, without touching the original seeded files.
 
@@ -240,52 +240,51 @@ I set this up because I want music downloads to be copied to another folder for 
 # TR_TORRENT_NAME: Current seed name
 
 # Set log file path
-LOG_FILE="/data/Completed/torrent_post_process.log"
-DESTINATION="/data/Completed"
+DESTINATION="/data/Downloads/Completed"
 
-touch "$LOG_FILE"
-chmod 644 "$LOG_FILE"
+LOGGING=1
 
-echo "[$(date)] Log triggered." >> "$LOG_FILE"
-echo "[$(date)] TR_TORRENT_NAME: $TR_TORRENT_NAME" >> "$LOG_FILE"
-echo "[$(date)] TR_TORRENT_DIR: $TR_TORRENT_DIR" >> "$LOG_FILE"
+log() {
+  if [ $LOGGING -eq 1 ]; then
+    local LOG_FILE="/home/pe8er/docker/transmission/torrent.log"
+    [ -f "$LOG_FILE" ] || touch "$LOG_FILE"
+    local TIMESTAMP
+    TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+    echo "[$TIMESTAMP] ($(basename "$0")) > $*"
+    echo "[$TIMESTAMP] ($(basename "$0")) > $*" >>"$LOG_FILE"
+    return
+  fi
+}
 
-# # Ensure the log file exists and is writable
-# touch "$LOG_FILE"
-# chmod 644 "$LOG_FILE"
-
-
-# Log start
-echo "[$(date)] Starting post-process for: $TR_TORRENT_NAME" >> "$LOG_FILE"
+log "Starting post-process for: $TR_TORRENT_NAME"
 
 # Perform copy and log output
 cp -a "$TR_TORRENT_DIR/$TR_TORRENT_NAME" "$DESTINATION/" >> "$LOG_FILE" 2>&1
 
 # Log status
 if [ $? -eq 0 ]; then
-    echo "[$(date)] ✅ Copy successful: $TR_TORRENT_NAME" >> "$LOG_FILE"
+  COPYMESSAGE="and copied"
 else
-    echo "[$(date)] ❌ Copy failed: $TR_TORRENT_NAME" >> "$LOG_FILE"
+  COPYMESSAGE="but not copied"
 fi
 
-TOKEN_USER="[TOKEN_USER]";
-TOKEN_APP="[TOKEN_APP]";
-
 # Message for the notification.
-MESSAGE="$TR_TORRENT_NAME downloaded & copied.";
+MESSAGE="$TR_TORRENT_NAME downloaded $COPYMESSAGE";
+log $MESSAGE
 
-PRIORITY=0;
-SOUND="tugboat";
 TITLE="☠️ ✅ Torrent download completed";
+NTFYSERVER="192.168.1.199:8787/transmission"
 
-TIMESTAMP=$(date +%s);
-
-curl -s --form-string "token=$TOKEN_APP" --form-string "user=$TOKEN_USER" --form-string "timestamp=$TIMESTAMP" --form-string "priority=$PRIORITY" --form-string "sound=$SOUND" --form-string "title=$TITLE" --form-string "message=$MESSAGE" https://api.pushover.net/1/messages.json
+curl \
+  -H "$TITLE" \
+  -H "Tags: partying_face" \
+  -d "$MESSAGE" \
+  $NTFYSERVER
 ```
 
 ## Magic of Remote Access: Tailscale
 
-I could never figure out how VPNs work. I've had a hazy idea that's what I need to access all my apps from outside the house…but I would never attempt to set up a VPN server (??) manually. Thankfully a good friend is a seasoned devops admin and he proposed a solution appopriate for my highly incapable brain: [Tailscale](https://tailscale.com/). I found a tutorial, closed my eyes and proceeded copy-pasting stuff.
+I could never figure out how VPNs work. I've had a hazy idea that's what I need to access all my apps from outside the house…but I would never attempt to set up a VPN server (??) manually. Thankfully a good friend is a seasoned devops admin and he proposed a solution appropriate for my highly incapable brain: [Tailscale](https://tailscale.com/). I found a tutorial, closed my eyes and proceeded copy-pasting stuff.
 
 First, make sure `apt` is up to date:
 
@@ -329,7 +328,7 @@ Start Tailscale:
 sudo tailscale up
 ```
 
-In order for other Tailscale clients to be able to access my LAN, server needs to be set up as _subnet router_. The following is from [Tailscale documentation](https://tailscale.com/kb/1019/subnets). First, enable port forwarding:
+In order for other Tailscale clients to be able to access my LAN, server needs to be set up as *subnet router*. The following is from [Tailscale documentation](https://tailscale.com/kb/1019/subnets). First, enable port forwarding:
 
 ```bash
 echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.d/99-tailscale.conf

@@ -4,8 +4,7 @@ date: 2025-01-02
 # last_modified_at: 2025-01-09
 categories:
   - Blog
-tags:
-  - Homelab
+tags: [Homelab]
 toc: true
 ---
 
@@ -14,8 +13,7 @@ An assortments of things I set up on my Pi to prepare it for operation.
 <!--more-->
 
 This post is a part of my *Homelab Series*. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
-{: .notice}
-
+{:.notice}
 
 ## Define Static IP
 
@@ -51,7 +49,6 @@ Copy keys to pi:
 cat ~/.ssh/id_rsa.pub | ssh [USERNAME]@[PI IP ADDRESS] "cat >> ~/.ssh/authorized_keys"
 ```
 
-
 ## Disable Wi-fi
 
 Open the relevant configuration file:
@@ -69,18 +66,25 @@ dtoverlay=disable-wifi
 ## Mount External Hard Drive
 
 Find your drive. It should be at the very bottom, named most likely /dev/sdaN.
+
 ```bash
 sudo fdisk -l
 ```
+
 Find UUID and TYPE of your disk:
+
 ```bash
 sudo blkid /dev/sda2
 ```
+
 Create a folder where the drive will be mounted. You can pick any name, I went for 'media'.
+
 ```bash
 sudo mkdir /mnt/media
 ```
+
 Add drive info to the scary auto-mounting configuration file:
+
 ```bash
 sudo nano /etc/fstab
 ```
@@ -90,6 +94,7 @@ Add a new line at the end and paste the following and replace [UUID], [PATH] and
 ```conf
 UUID=[UUID] [PATH] [TYPE] defaults,uid=1000,gid=1000,users,auto,nofail,noatime 0 0
 ```
+
 Restart the service, unmount, re-mount the drive and reboot to check if everything works:
 
 ```bash
@@ -115,9 +120,11 @@ I think I did this to get transmission to write to the external drive.
 ```bash
 sudo su
 ```
+
 ```bash
 find /mnt/media -type d -exec chmod 755 {} \;
 ```
+
 ```bash
 find /mnt/media -type f -exec chmod 644 {} \;
 ```

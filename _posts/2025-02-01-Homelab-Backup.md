@@ -4,20 +4,19 @@ date: 2025-02-01
 toc: true
 categories:
   - Blog
-tags:
-  - Homelab
+tags: [Homelab]
 ---
 
-A couple of weeks ago, I made [an attempt to reduce USB hard drive noise]({% post_url 2025-01-06-Homelab-HDD-Noise %}) by idling it automatically. It didn't work out that well -- the drive seems to be possessed, turns itself on seemingly randomly, and the logs tell me _nothing_.<!--more--> I figured a better solution would be to mount it only when it's needed, which coincides with my decision to use it just for backups.
+A couple of weeks ago, I made [an attempt to reduce USB hard drive noise]({% post_url 2025-01-06-Homelab-HDD-Noise %}) by idling it automatically. It didn't work out that well -- the drive seems to be possessed, turns itself on seemingly randomly, and the logs tell me *nothing*.<!--more--> I figured a better solution would be to mount it only when it's needed, which coincides with my decision to use it just for backups.
 
-This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
-{: .notice}
+This post is a part of my *Homelab Series*. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
+{:.notice}
 
 ## Backup Script
 
 I asked ChatGPT to write the backup script for me and I feel empty. It was just too easy. I missed the dopamine kick from figuring out the arcane arts of shell scripting, ugh. And because I was very lazy at prompting, it took several attempts to make it do exactly what I want. And again, instead of a sense of satisfaction or learning, it felt like a frustrating encounter with a incredibly talented but woefully unimaginative person.
 
-And after that, the universe heard my request for a challenge and for two straight days, I wasn't able to figure out why `rsync` wouldn't accept my exclude lists. I finally figured out a solution but I have _no idea_ why the original approach (using an array with `--exclude=` option) didn't work.
+And after that, the universe heard my request for a challenge and for two straight days, I wasn't able to figure out why `rsync` wouldn't accept my exclude lists. I finally figured out a solution but I have *no idea* why the original approach (using an array with `--exclude=` option) didn't work.
 
 Anyway, here's the script. It stops all docker containers, mounts the external drive, performs 2 backup operations, restarts docker containers, unmounts the drive and sends a report to my phone. It even has a dry run mode -- simply run `sudo backup.sh test` for a test run with more logging and some actions (like unmounting) disabled.
 
@@ -43,8 +42,8 @@ declare -a backups=(
 export LC_ALL=C
 
 # Pushover credentials
-tokenUser="u22kk8j5cyb3a9ji7s5yh1mi7hk12n"
-tokenApp="a7f44m51kzzgoa4mwtn77q8zb39n3i"
+tokenUser="XXX"
+tokenApp="XXX"
 
 # Log file location
 logFile="/var/log/backup.log"

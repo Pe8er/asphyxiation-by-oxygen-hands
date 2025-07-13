@@ -4,8 +4,7 @@ date: 2025-01-01
 # last_modified_at: 2025-01-09
 categories:
   - Blog
-tags:
-  - Homelab
+tags: [Homelab]
 ---
 
 I'm using a somewhat ancient Raspberry Pi 3B+ as a home server and NAS. This series of posts summarizes the steps I took to get it all up an running. <!--more-->90% of it was me following [Pi My Life Up](https://pimylifeup.com/). I decided to write it all down on my blog to document my specific setup, in case my Pi explodes (which it probably will) before I back it up (which I will definitely not remember to do) and I have to do it all over again.
