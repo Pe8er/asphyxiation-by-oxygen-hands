@@ -235,48 +235,47 @@ I set this up because I want music downloads to be copied to another folder for 
 # TR_APP_VERSION: The version number of the current TR
 # TR_TIME_LOCALTIME: Current time
 # TR_TORRENT_DIR: The directory where the current completed seed is located
-# TR_TORRENT_HASH: hashThe value of the current seed
+# TR_TORRENT_HASH: Hash of the current seed
 # TR_TORRENT_ID: Current seed ID
 # TR_TORRENT_NAME: Current seed name
 
 # Set log file path
-DESTINATION="/data/Downloads/Completed"
-
+LOG_FILE="config/torrent.log"
+DESTINATION="data/Downloads/Completed"
 LOGGING=1
+
+# Testing only!
+# TR_TORRENT_DIR="data/Downloads/Seeding"
+# TR_TORRENT_NAME="Sampha - Process (2016) [FLAC]"
 
 log() {
   if [ $LOGGING -eq 1 ]; then
-    local LOG_FILE="/home/pe8er/docker/transmission/torrent.log"
     [ -f "$LOG_FILE" ] || touch "$LOG_FILE"
     local TIMESTAMP
     TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
     echo "[$TIMESTAMP] ($(basename "$0")) > $*"
     echo "[$TIMESTAMP] ($(basename "$0")) > $*" >>"$LOG_FILE"
-    return
   fi
 }
 
 log "Starting post-process for: $TR_TORRENT_NAME"
 
 # Perform copy and log output
-cp -a "$TR_TORRENT_DIR/$TR_TORRENT_NAME" "$DESTINATION/" >> "$LOG_FILE" 2>&1
-
-# Log status
-if [ $? -eq 0 ]; then
+if cp -a "$TR_TORRENT_DIR/$TR_TORRENT_NAME" "$DESTINATION/" >> "$LOG_FILE" 2>&1; then
   COPYMESSAGE="and copied"
 else
   COPYMESSAGE="but not copied"
 fi
 
-# Message for the notification.
-MESSAGE="$TR_TORRENT_NAME downloaded $COPYMESSAGE";
-log $MESSAGE
+# Notification message
+MESSAGE="$TR_TORRENT_NAME downloaded $COPYMESSAGE"
+log "$MESSAGE"
 
-TITLE="☠️ ✅ Torrent download completed";
+TITLE="☠️ ✅ Torrent download completed"
 NTFYSERVER="192.168.1.199:8787/transmission"
 
 curl \
-  -H "$TITLE" \
+  -H "Title: $TITLE" \
   -H "Tags: partying_face" \
   -d "$MESSAGE" \
   $NTFYSERVER
