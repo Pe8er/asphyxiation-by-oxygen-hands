@@ -240,7 +240,8 @@ blockquote {
 .archive h1#page-title,
 .skip-links,
 .page__meta i,
-.masthead > * {
+.masthead > *,
+.sr-only {
   display: none !important;
 }
 

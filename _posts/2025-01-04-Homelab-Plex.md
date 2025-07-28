@@ -5,20 +5,19 @@ header:
   teaser: /assets/images/plex.jpg
 categories:
   - Blog
-tags:
-  - Homelab
+tags: [Homelab]
 toc: true
 ---
 
 ![Plex Screenshot](/assets/images/plex.jpg)
-{: .screenshot}
+{:.screenshot}
 
 I use Plex Media Server as my personal, local/cloud music library. I have a lifetime Plex Pass, which gives me access to all [Plexamp](https://www.plex.tv/plexamp/) features, including setting it up as a headless player on my Pi.
 
 <!--more-->
 
-This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
-{: .notice}
+This post is a part of my *Homelab Series*. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
+{:.notice}
 
 ## Plex Media Server
 
@@ -46,6 +45,17 @@ And install!
 
 ```bash
 sudo apt install plexmediaserver
+```
+
+Add plex user to my user group, and allow this group to access /media/$USER:
+
+```bash
+set MYGROUP "$USER"
+sudo usermod -a -G $MYGROUP plex
+sudo chown $USER:$MYGROUP /media/$USER
+sudo chmod 750 /media/$USER
+sudo setfacl -m g:$MYGROUP:rwx /media/$USER
+sudo service plexmediaserver restart
 ```
 
 Plex Media Server is available:
