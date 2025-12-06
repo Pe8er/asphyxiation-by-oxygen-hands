@@ -6,9 +6,7 @@ header:
   teaser: /assets/images/unguibus-et-rostro/ur-new.jpg
 categories:
   - Blog
-tags:
-  - UX
-  - Design
+tags: [UX, Design]
 ---
 
 A throwback to the ancient history of UI customization, part two: circa 2005, my so-called career as a designer received a huge boost when Phill Ryu asked me to participate in the Shapeshifter theme contest, organized to celebrate the re-opening of MacThemes forum. <!--more-->If you joined the party after 2008, most likely none of these things mean anything to you. A quick history lesson then:

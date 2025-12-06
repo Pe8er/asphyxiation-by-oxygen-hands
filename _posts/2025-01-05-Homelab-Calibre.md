@@ -3,15 +3,14 @@ title: "Calibre Web"
 date: 2025-01-05
 categories:
   - Blog
-tags:
-  - Homelab
+tags: [Homelab]
 toc: true
 header:
   teaser: /assets/images/calibre.jpg
 ---
 
 ![Calibre Web Screenshot](/assets/images/calibre.jpg)
-{: .screenshot}
+{:.screenshot}
 
 I synchronize my Calibre library between my Mac and Pi using Syncthing. I add and manage books on Mac and do a one way sync to Pi to prevent database corruption. And then [Calibre-Web](https://github.com/janeczku/calibre-web) on Pi picks up the database and makes it available on my local network.
 
@@ -19,8 +18,8 @@ I synchronize my Calibre library between my Mac and Pi using Syncthing. I add an
 
 At some point, I'll probably use it as a syncing mechanism for my Kobo e-reader.
 
-This post is a part of my _Homelab Series_. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
-{: .notice}
+This post is a part of my *Homelab Series*. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
+{:.notice}
 
 ## Calibre Web
 
@@ -47,7 +46,7 @@ services:
 
 ## Automatic Database Reload
 
-Calibre Web doesn't reload automatically when changes are made to it's database — you need to restart it or reload it from the admin panel manually. This script automates this process.
+Calibre Web doesn't reload automatically when changes are made to it's database—you need to restart it or reload it from the admin panel manually. This script automates this process.
 
 Before you start, make sure you have this environment variable in your Calibre-Web container:
 
