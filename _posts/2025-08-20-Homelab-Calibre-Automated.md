@@ -12,7 +12,7 @@ header:
 ![Calibre Web Screenshot](/assets/images/calibre.jpg)
 {:.screenshot}
 
-This is a follow-up to my post about setting up Calibre book library on my local server. Since the last time I attempted it, I switched to a GMKtec NucBox G3 and
+This is a follow-up to my post about setting up Calibre book library on my local server.
 
 <!--more-->
 
@@ -70,7 +70,7 @@ mkdir /home/pe8er/docker/cwa-downloader
 cd /home/pe8er/docker/cwa-downloader
 ```
 
-2. Get the docker-compose.yml:
+1. Get the docker-compose.yml:
 
 ```bash
 curl -O https://raw.githubusercontent.com/calibrain/calibre-web-automated-book-downloader/refs/heads/main/docker-compose.yml
@@ -110,12 +110,10 @@ services:
       # - /home/pe8er/docker/cwa/app.db:/auth/app.db:ro
 ```
 
-2. Start the service:
+1. Start the service:
 
 ```bash
 docker compose up -d
 ```
 
-3. Access the web interface at `http://192.168.1.199:8084`
-
-Here's my
+1. Access the web interface at `http://192.168.1.199:8084`

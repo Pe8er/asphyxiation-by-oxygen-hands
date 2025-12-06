@@ -18,3 +18,4 @@ I'm using a somewhat ancient Raspberry Pi 3B+ as a home server and NAS. This ser
 7. [Automated Raspberry Pi Backup with rsync]({%- post_url 2025-02-01-Homelab-Backup -%})
 8. [New Server: GMKtec NucBox G3 Setup]({%- post_url 2025-03-28-G3 -%})
 9. [I have finally set up backups on my server]({%post_url 2025-07-11-Borg -%})
+10. [Calibre Web Automated]({%post_url 2025-08-20-Homelab-Calibre-Automated -%})
