@@ -9,7 +9,7 @@ header:
   teaser: /assets/images/calibre.jpg
 ---
 
-![Calibre Web Screenshot](/assets/images/calibre.jpg)
+![Calibre Web Screenshot](/assets/images/cwa.jpg)
 {:.screenshot}
 
 This is a follow-up to my post about setting up Calibre book library on my local server.
