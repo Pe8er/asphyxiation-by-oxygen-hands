@@ -70,7 +70,7 @@ mkdir /home/pe8er/docker/cwa-downloader
 cd /home/pe8er/docker/cwa-downloader
 ```
 
-1. Get the docker-compose.yml:
+2. Get the docker-compose.yml:
 
 ```bash
 curl -O https://raw.githubusercontent.com/calibrain/calibre-web-automated-book-downloader/refs/heads/main/docker-compose.yml
@@ -110,10 +110,10 @@ services:
       # - /home/pe8er/docker/cwa/app.db:/auth/app.db:ro
 ```
 
-1. Start the service:
+3. Start the service:
 
 ```bash
 docker compose up -d
 ```
 
-1. Access the web interface at `http://192.168.1.199:8084`
+4. Access the web interface at `http://192.168.1.199:8084`
