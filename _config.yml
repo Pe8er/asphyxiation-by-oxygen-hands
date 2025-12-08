@@ -31,7 +31,7 @@ header: /assets/images/bio-photo.jpg
 breadcrumbs: false
 enable_copy_code_button: true
 markdown: kramdown
-remote_theme: mmistakes/minimal-mistakes
+remote_theme: "mmistakes/minimal-mistakes@4.27.3"
 excerpt_separator: <!--more-->
 
 # Outputting
@@ -68,24 +68,24 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "Asphyxiation by&nbsp;Oxygen&nbsp;Hands"
+  name   : "Asphyxiation by Oxygen Hands"
   bio   : "Piotr Gajos"
   avatar : "/assets/images/bio-photo.jpg"
   links:
     - label: "About"
-      icon: "fas fa-fw fa-user-secret"
+      # icon: "fas fa-fw fa-user-secret"
       url: "/about/"
     - label: "Last.fm"
-      icon: "fab fa-fw fa-lastfm"
+      # icon: "fab fa-fw fa-lastfm"
       url: "https://www.last.fm/user/Pe8er"
     - label: "GitHub"
-      icon: "fab fa-fw fa-github"
+      # icon: "fab fa-fw fa-github"
       url: "https://github.com/Pe8er"
     - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
+      # icon: "fab fa-fw fa-instagram"
       url: "https://www.instagram.com/0mittens.mauve/"
     - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
+      # icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/pe8er/"
 
 defaults:

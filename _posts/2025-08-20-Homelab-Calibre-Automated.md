@@ -12,14 +12,14 @@ header:
 ![Calibre Web Screenshot](/assets/images/cwa.jpg)
 {:.screenshot}
 
-This is a follow-up to my post about setting up Calibre book library on my local server.
-
-<!--more-->
+This is a follow-up to my post about setting up Calibre book library on my local server.<!--more--> I found a better way!
 
 This post is a part of my *Homelab Series*. [See the index here]({%- post_url 2025-01-01-Homelab-Introduction -%}).
 {:.notice}
 
-## Installation
+## CWA Installation
+
+[Calibre Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) is the final (so far) form of modernizing the OG book management app, Calibre. It runs in docker and it has tons of QOL improvements.
 
 ```yaml
 ---
@@ -48,8 +48,8 @@ services:
 
 Default login credentials:
 
-**Username:** admin
-**Password:** admin123
+- **Username:** admin
+- **Password:** admin123
 
 ## Post Install
 
@@ -59,7 +59,7 @@ Default login credentials:
 4. Enable Kobo and Hardcover sync: same panel as above
 5. [Enable Kobo integration](https://github.com/janeczku/calibre-web/wiki/Kobo-Integration)
 
-## Bonus: [Calibre Downloader](https://github.com/calibrain/calibre-web-automated-book-downloader)
+## [Calibre Downloader](https://github.com/calibrain/calibre-web-automated-book-downloader)
 
 This apps lets me search and download books from annas-archive.org, and adds them to CWA automatically.
 
@@ -117,3 +117,17 @@ docker compose up -d
 ```
 
 4. Access the web interface at `http://192.168.1.199:8084`
+
+Nice! Downloading works well and books show up in Calibre automatically. Next step:
+
+## Kobo Integration
+
+There is a way to seamlessly display Calibre library on Kobo e-readers. It works very well and it's pretty damn easy to do!
+
+1. Connect Kobo to computer via USB-C.
+2. Open CWA -> Account dropdown -> Admin -> Kobo Sync Token -> Create / View
+3. Open `.kobo/Kobo/Kobo eReader.conf` and add the generated token to it:
+   
+   `api_endpoint=http://192.168.1.199:8083/kobo/<hash>`
+4. Hit "Force Full Kobo Sync"
+5. Bob's your uncle!

@@ -28,7 +28,7 @@ $h-size-4: 1.5em !default;
 $h-size-5: 1.25em !default;
 $h-size-6: 1em !default;
 
-$base99: #36363A;
+$base99: #171717;
 $base00: #282936;
 $base01: #3a3c4e;
 $base02: #4d4f68;
@@ -51,7 +51,8 @@ $dark-theme: true;
 // Color Primitives
 $accent-01: $base0b;
 $accent-02: $base0a;
-$black: mix($accent-02, #222, 1%);
+$black: $base99;
+// $black: mix($accent-02, #222, 1%);
 $white: $base05;
 
 // Light Theme Tokens
@@ -137,7 +138,7 @@ img {
 
 p,
 li {
-  font-weight: 300 !important;
+  font-weight: 500 !important;
 }
 
 a,
@@ -250,8 +251,7 @@ blockquote {
 // Sidebar ----------------------------- //
 
 .sidebar {
-  margin-top: 1em;
-  opacity: 1 !important;
+  padding-top: 3em;
 
   .h-card {
     display: flex;
@@ -265,11 +265,16 @@ blockquote {
 
 .author__name {
   margin: 0;
+  font-size: $type-size-2 !important;
 
   @include breakpoint($large) {
-    margin-top: 2em;
+    // margin-top: 3em;
     margin-bottom: 2em;
   }
+}
+
+.author__content {
+  padding-inline: 0 !important;
 }
 
 .author__urls {
@@ -283,6 +288,9 @@ blockquote {
   li {
     padding-left: 1em;
   }
+  span.label {
+    padding-inline-start: 0 !important;
+  }
   @include breakpoint($large) {
     padding: 0 !important;
     box-shadow: none !important;
@@ -294,13 +302,13 @@ blockquote {
 }
 
 .author__avatar {
-  display: table-cell;
+  display: none;
   vertical-align: top;
   width: 36px;
   height: 36px;
 
   @include breakpoint($large) {
-    display: block;
+    // display: block;
     width: auto;
     height: auto;
   }
@@ -410,8 +418,8 @@ blockquote {
   display: inline !important;
 }
 
-ul.social-icons {
-  li::before {
+.social-icons {
+  i {
     display: none !important;
   }
 }
@@ -451,7 +459,7 @@ h2.archive__item-title:first-of-type {
 .page__inner-wrap,
 .archive {
   margin: 0 !important;
-  padding-top: 2em !important;
+  padding-top: 4em !important;
   padding-bottom: 2em !important;
   @include breakpoint($large) {
     padding-left: 2em;
@@ -460,14 +468,14 @@ h2.archive__item-title:first-of-type {
 }
 
 .entries-list > .list__item {
-  margin-bottom: 4em !important;
+  margin: 0 0 8em 0 !important;
 }
 
 .archive__item {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 1em; /* Space between the text and the image */
+  gap: 2em; /* Space between the text and the image */
 
   @include breakpoint($medium) {
     flex-direction: row;
@@ -610,7 +618,7 @@ h2.archive__item-title:first-of-type {
 .page__meta {
   font-size: $type-size-6 !important;
   p {
-    border-top: $border !important;
+    border-top: none !important;
   } 
   p:last-of-type {
     border-bottom: none !important;
@@ -644,7 +652,6 @@ header .tags {
 .archive__item-content > .page__meta {
   padding: 0.5em 0 !important;
   margin-bottom: 1em !important;
-  border-bottom: $border !important;
 }
 
 a.continue {
