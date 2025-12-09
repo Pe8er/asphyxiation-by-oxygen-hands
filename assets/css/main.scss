@@ -21,6 +21,7 @@ $type-size-7: 0.6em !default;
 $type-size-8: 0.5em !default;
 
 // Headline Scale
+$h-size-0: 6em !default;
 $h-size-1: 3em !default;
 $h-size-2: 2.5em !default;
 $h-size-3: 2em !default;
@@ -34,7 +35,7 @@ $base01: #3a3c4e;
 $base02: #4d4f68;
 $base03: #626483;
 $base04: #62d6e8;
-$base05: #e9e9f4;
+$base05: #d7d7df;
 $base06: #f1f2f8;
 $base07: #f7f7fb;
 $base08: #ea51b2;
@@ -74,8 +75,8 @@ $background-color: $background !default;
 $text-color: $foreground !default;
 $body-color: $background !default;
 $link-color: $url !default;
-$lines-color: mix($background, $foreground, 80%) !default;
-$meta-color: mix($background, $foreground, 40%) !default;
+$lines-color: mix($background, $foreground, 70%) !default;
+$meta-color: mix($background, $foreground, 60%) !default;
 $box-shadow: 0 1em 2em 0 $shadow-color !default;
 $border: 1px solid $lines-color !default;
 $global-transition: none !default;
@@ -251,13 +252,15 @@ blockquote {
 // Sidebar ----------------------------- //
 
 .sidebar {
-  padding-top: 3em;
+  padding: 0 1em 0 1em !important;
+  overflow-y: visible !important;
 
   .h-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
     @include breakpoint($large) {
+      margin-top: -2em;
       display: block;
     }
   }
@@ -266,10 +269,15 @@ blockquote {
 .author__name {
   margin: 0;
   font-size: $type-size-2 !important;
-
+  a {
+  color: $meta-color !important;
+  }
   @include breakpoint($large) {
     // margin-top: 3em;
-    margin-bottom: 2em;
+    // margin-bottom: 2em;
+    transform: rotate(270deg) translateX(-720px) translateY(72px);
+    white-space: nowrap !important;
+    font-size: $h-size-0 !important;
   }
 }
 
