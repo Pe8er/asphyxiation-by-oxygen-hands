@@ -59,7 +59,7 @@ Default login credentials:
 4. Enable Kobo and Hardcover sync: same panel as above
 5. [Enable Kobo integration](https://github.com/janeczku/calibre-web/wiki/Kobo-Integration)
 
-## [Calibre Downloader](https://github.com/calibrain/calibre-web-automated-book-downloader)
+## [Calibre Downloader](https://github.com/calibrain/calibre-web-automated-book-downloader) (aka Shelfmark aka Litfinder)
 
 This apps lets me search and download books from annas-archive.org, and adds them to CWA automatically.
 
@@ -73,41 +73,28 @@ cd /home/pe8er/docker/cwa-downloader
 2. Get the docker-compose.yml:
 
 ```bash
-curl -O https://raw.githubusercontent.com/calibrain/calibre-web-automated-book-downloader/refs/heads/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/calibrain/shelfmark/main/compose/docker-compose.yml
 ```
 
 ```yaml
 services:
   calibre-web-automated-book-downloader:
-    image: ghcr.io/calibrain/calibre-web-automated-book-downloader:latest
+    image: ghcr.io/calibrain/shelfmark:latest
     # Uncomment to build the image from the Dockerfile for local testing changes.
     # Remember to comment out the image line above.
     #build: .
-    container_name: cwa-downloader
+    container_name: shelfmark
     environment:
-      FLASK_PORT: 8084
-      LOG_LEVEL: info
-      BOOK_LANGUAGE: pl,en
-      SUPPORTED_FORMATS: epub
-      USE_BOOK_TITLE: true
       TZ: Europe/Warsaw
-      APP_ENV: prod
       UID: 1000
       GID: 100
-      # CWA_DB_PATH: /auth/app.db  # Comment out to disable authentication
-      # Queue management settings
-      MAX_CONCURRENT_DOWNLOADS: 3
-      DOWNLOAD_PROGRESS_UPDATE_INTERVAL: 5
     ports:
       - 8084:8084
     restart: unless-stopped
     volumes:
-      # This is where the books will be downloaded to, usually it would be
-      # the same as whatever you gave in "calibre-web-automated"
       - /home/pe8er/Downloads/Books:/cwa-book-ingest
-      # This is the location of CWA's app.db, which contains authentication
-      # details. Comment out to disable authentication
-      # - /home/pe8er/docker/cwa/app.db:/auth/app.db:ro
+      - /mnt/ssd-internal/Audiobooks:/Audiobooks
+      - /home/pe8er/docker/cwa-downloader:/config
 ```
 
 3. Start the service:
@@ -131,3 +118,23 @@ There is a way to seamlessly display Calibre library on Kobo e-readers. It works
    `api_endpoint=http://192.168.1.199:8083/kobo/<hash>`
 4. Hit "Force Full Kobo Sync"
 5. Bob's your uncle!
+
+## Mousehole
+
+And there's [this](https://github.com/t-mart/mousehole).
+
+```yaml
+services:
+  mousehole:
+    image: tmmrtn/mousehole:latest
+    network_mode: "container:transmission-openvpn"
+    environment:
+      MOUSEHOLE_AUTH_PASSWORD: [PASSWORD]
+      TZ: Europe/Warsaw
+    volumes:
+      - mousehole:/home/pe8er/docker/mousehole
+    restart: unless-stopped
+
+volumes:
+  mousehole:
+```
